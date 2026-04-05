@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://n3orj1y5ffl7"]
+
+[ext_resource type="Script" uid="uid://c0unu8l5cw5b1" path="res://addons/romgerman.audio_wizard/inspector/compressor/compressor_editor.gd" id="1_hgm3b"]
+
+[node name="CompressorEditor" type="MarginContainer" unique_id=1336555026]
+custom_minimum_size = Vector2(0, 200)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_hgm3b")

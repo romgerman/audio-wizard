@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://b2jc5jbcpjrp8"]
+
+[ext_resource type="AudioStream" uid="uid://b36hg16x0swq2" path="res://audio/music/there 2025-07-29 0024.mp3" id="1_wiwsh"]
+
+[node name="main3d" type="Node3D" unique_id=960809665]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=140782761]
+stream = ExtResource("1_wiwsh")
+bus = &"SFX"

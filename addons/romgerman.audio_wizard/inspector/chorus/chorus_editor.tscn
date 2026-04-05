@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://uiuk5s8gpcbn"]
+
+[ext_resource type="Script" uid="uid://cpm6etxit7rmg" path="res://addons/romgerman.audio_wizard/inspector/chorus/chorus_editor.gd" id="1_5veih"]
+
+[node name="ChorusEditor" type="MarginContainer" unique_id=289913772]
+clip_contents = true
+custom_minimum_size = Vector2(0, 200)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_5veih")
