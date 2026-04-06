@@ -25,15 +25,15 @@ jobs:
         shell: bash
         run: |
           ADDON_NAME='romgerman.audio_wizard'
-          OUTPUT_NAME='splasher'
+          OUTPUT_NAME='audio_wizard'
           ADDON_ZIP="${{ github.workspace }}/${OUTPUT_NAME}.zip"
           cd "${{ github.workspace }}/output"
           zip -r "${ADDON_ZIP}" 'addons/'
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: "splasher"
-          path: ${{ github.workspace }}/splasher.zip
+          name: "audio_wizard"
+          path: ${{ github.workspace }}/audio_wizard.zip
           retention-days: 30
   release:
     needs: pack
