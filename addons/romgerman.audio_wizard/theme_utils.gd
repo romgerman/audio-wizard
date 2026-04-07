@@ -18,6 +18,6 @@ static func is_light_color(color: Color) -> bool:
 
 static func modify_color(color: Color, mod: float) -> Color:
 	if is_light_color(color):
-		return color.darkened(0.5)
+		return color.darkened(mod)
 	else:
-		return color.lightened(0.5)
+		return color.lightened(mod)

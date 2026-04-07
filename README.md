@@ -14,6 +14,7 @@ For those who are tired of blindly changing parameters of audio effects in Godot
 - Capture
 - Chorus
 - Compressor
+- Delay
 
 ## Similar addons:
 
