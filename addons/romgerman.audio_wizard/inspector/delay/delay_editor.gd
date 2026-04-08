@@ -1,8 +1,6 @@
 @tool
 extends "../effect_editor_base.gd"
 
-const ThemeUtils := preload("res://addons/romgerman.audio_wizard/theme_utils.gd")
-
 const TAP_MIN_DELAY_MS := 0.0
 const TAP_MAX_DELAY_MS := 1500.0
 const TAP_MIN_LEVEL_DB := -60.0
@@ -15,11 +13,6 @@ const RESOLUTION := 128
 const FEEDBACK_RESOLUTION := 48
 const LINE_THICKNESS := 3.0
 
-var base_color: Color
-var accent_color: Color
-var text_color: Color
-var is_light_theme: bool
-
 func _ready() -> void:
 	super._ready()
 	
@@ -27,11 +20,6 @@ func _ready() -> void:
 		EditorInterface.get_inspector().property_edited.connect(func (_prop: String):
 			queue_redraw()
 		)
-	
-	base_color = ThemeUtils.get_base_color(self)
-	accent_color = ThemeUtils.get_accent_color(self)
-	is_light_theme = ThemeUtils.is_light_color(base_color)
-	text_color = Color.BLACK if is_light_theme else Color.WHITE
 
 func _process(delta: float) -> void:
 	if eff_ref:

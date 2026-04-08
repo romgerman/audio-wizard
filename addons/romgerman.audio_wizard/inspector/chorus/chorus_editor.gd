@@ -1,8 +1,6 @@
 @tool
 extends "../effect_editor_base.gd"
 
-const ThemeUtils := preload("res://addons/romgerman.audio_wizard/theme_utils.gd")
-
 const MIN_DELAY_MS := 0.0
 const MAX_DELAY_MS := 50.0
 const MIN_LEVEL_DB := -60.0
@@ -11,24 +9,13 @@ const MAX_LEVEL_DB := 24.0
 const CONTENT_PADDING := 12.0
 const LINE_THICKNESS := 1.0
 
-var base_color: Color
-var accent_color: Color
-var text_color: Color
-var is_light_theme: bool
-
 func _ready() -> void:
-	if audio_bus_index != -1 and audio_eff_index != -1:
-		eff_ref = AudioServer.get_bus_effect(audio_bus_index, audio_eff_index)
+	super._ready()
 	
 	if eff_ref:
 		EditorInterface.get_inspector().property_edited.connect(func (_prop: String):
 			queue_redraw()
 		)
-	
-	base_color = ThemeUtils.get_base_color(self)
-	accent_color = ThemeUtils.get_accent_color(self)
-	is_light_theme = ThemeUtils.is_light_color(base_color)
-	text_color = Color.BLACK if is_light_theme else Color.WHITE
 
 func _draw() -> void:
 	draw_layout()

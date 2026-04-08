@@ -6,13 +6,13 @@ voice/1/pan = -0.56
 
 [sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_j3pel"]
 resource_name = "Compressor"
-threshold = -32.4
+threshold = -36.3
 ratio = 1.5
 
 [sub_resource type="AudioEffectDelay" id="AudioEffectDelay_j3pel"]
 resource_name = "Delay"
-tap1_delay_ms = 614.0
-tap1_level_db = 0.0
+tap1_delay_ms = 656.0
+tap1_level_db = -4.02
 tap1_pan = 0.61
 tap2_delay_ms = 340.0
 tap2_level_db = -17.5
@@ -21,19 +21,21 @@ feedback_active = true
 feedback_delay_ms = 119.0
 feedback_level_db = -38.09
 
+[sub_resource type="AudioEffectDistortion" id="AudioEffectDistortion_j3pel"]
+resource_name = "Distortion"
+
 [sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_j3pel"]
 resource_name = "Amplify"
 volume_db = -6.05
 
 [sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_j3pel"]
 resource_name = "LowPassFilter"
-cutoff_hz = 20500.0
-resonance = 0.0
+cutoff_hz = 10195.0
 
 [sub_resource type="AudioEffectHighPassFilter" id="AudioEffectHighPassFilter_j3pel"]
 resource_name = "HighPassFilter"
-cutoff_hz = 5290.0
-resonance = 0.49
+cutoff_hz = 6952.0
+resonance = 1.0
 
 [sub_resource type="AudioEffectNotchFilter" id="AudioEffectNotchFilter_j3pel"]
 resource_name = "NotchFilter"
@@ -44,12 +46,12 @@ gain = 0.89
 [sub_resource type="AudioEffectHighShelfFilter" id="AudioEffectHighShelfFilter_j3pel"]
 resource_name = "HighShelfFilter"
 cutoff_hz = 4508.0
-resonance = 0.51
+resonance = 0.86
 gain = 0.27
 
 [sub_resource type="AudioEffectCapture" id="AudioEffectCapture_j3pel"]
 resource_name = "Capture"
-buffer_length = 1.05
+buffer_length = 1.1
 
 [resource]
 bus/1/name = &"SFX"
@@ -64,6 +66,8 @@ bus/1/effect/1/effect = SubResource("AudioEffectCompressor_j3pel")
 bus/1/effect/1/enabled = true
 bus/1/effect/2/effect = SubResource("AudioEffectDelay_j3pel")
 bus/1/effect/2/enabled = true
+bus/1/effect/3/effect = SubResource("AudioEffectDistortion_j3pel")
+bus/1/effect/3/enabled = true
 bus/2/name = &"Music"
 bus/2/solo = false
 bus/2/mute = false
