@@ -16,7 +16,15 @@ func _ready() -> void:
 	if audio_bus_index != -1 and audio_eff_index != -1:
 		eff_ref = AudioServer.get_bus_effect(audio_bus_index, audio_eff_index)
 	
+	_get_theme_colors()
+
+func _get_theme_colors() -> void:
 	base_color = ThemeUtils.get_base_color(self)
 	accent_color = ThemeUtils.get_accent_color(self)
 	is_light_theme = ThemeUtils.is_light_color(base_color)
 	text_color = Color.BLACK if is_light_theme else Color.WHITE
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_THEME_CHANGED:
+		_get_theme_colors()
+		queue_redraw()
