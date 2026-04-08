@@ -21,9 +21,9 @@ func _ready() -> void:
 			queue_redraw()
 		)
 
-func _process(delta: float) -> void:
-	if eff_ref:
-		queue_redraw()
+#func _process(delta: float) -> void:
+	#if eff_ref:
+		#queue_redraw()
 
 func _draw() -> void:
 	draw_layout()

@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dc1funpj3f2wg"]
+
+[ext_resource type="Script" uid="uid://csh1kwwkdixcj" path="res://addons/romgerman.audio_wizard/inspector/distortion/distortion_editor.gd" id="1_knvo7"]
+
+[node name="DistortionEditor" type="MarginContainer" unique_id=1010135040]
+clip_contents = true
+custom_minimum_size = Vector2(0, 200)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_knvo7")

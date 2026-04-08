@@ -105,7 +105,7 @@ func draw_layout() -> void:
 	# Background
 	draw_rect(rect, base_color, true)
 
-# servers/audio/effects/audio_effect_compressor.cpp
+# servers/audio/effects/audio_effect_compressor.cpp#e1c1d7d1d7d9b3f3f64c9887107f55a22f5d0a31
 #/**************************************************************************/
 #/* Copyright (c) 2014-present Godot Engine contributors (see AUTHORS.md). */
 #/* Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.                  */

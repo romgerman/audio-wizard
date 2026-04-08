@@ -1,5 +1,8 @@
 [gd_resource type="AudioBusLayout" format=3 uid="uid://bvamgwon0ae0e"]
 
+[sub_resource type="AudioEffectLimiter" id="AudioEffectLimiter_j3pel"]
+resource_name = "Limiter"
+
 [sub_resource type="AudioEffectChorus" id="AudioEffectChorus_j3pel"]
 resource_name = "Chorus"
 voice/1/pan = -0.56
@@ -23,6 +26,10 @@ feedback_level_db = -38.09
 
 [sub_resource type="AudioEffectDistortion" id="AudioEffectDistortion_j3pel"]
 resource_name = "Distortion"
+mode = 1
+pre_gain = -6.49
+drive = 0.72
+post_gain = 10.12
 
 [sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_j3pel"]
 resource_name = "Amplify"
@@ -54,6 +61,8 @@ resource_name = "Capture"
 buffer_length = 1.1
 
 [resource]
+bus/0/effect/0/effect = SubResource("AudioEffectLimiter_j3pel")
+bus/0/effect/0/enabled = true
 bus/1/name = &"SFX"
 bus/1/solo = false
 bus/1/mute = false

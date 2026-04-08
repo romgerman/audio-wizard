@@ -15,6 +15,7 @@ For those who are tired of blindly changing parameters of audio effects in Godot
 - Chorus
 - Compressor
 - Delay
+- Distortion
 
 ## Similar addons:
 

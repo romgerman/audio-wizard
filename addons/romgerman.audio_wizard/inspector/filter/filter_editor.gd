@@ -76,7 +76,7 @@ func draw_layout() -> void:
 		ThemeUtils.modify_color(text_color, 0.5)
 	)
 
-# This method is compiled from: servers/audio/audio_filter_sw.cpp
+# This method is compiled from: servers/audio/audio_filter_sw.cpp#0b806ee0fc9097fa7bda7ac0109191c9c5e0a1ac
 #/**************************************************************************/
 #/* Copyright (c) 2014-present Godot Engine contributors (see AUTHORS.md). */
 #/* Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.                  */
