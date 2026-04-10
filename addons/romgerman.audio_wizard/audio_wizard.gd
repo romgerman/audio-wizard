@@ -8,6 +8,7 @@ const ChorusInspector := preload("res://addons/romgerman.audio_wizard/inspector/
 const CompressorInspector := preload("res://addons/romgerman.audio_wizard/inspector/compressor/compressor.gd")
 const DelayInspector := preload("res://addons/romgerman.audio_wizard/inspector/delay/delay.gd")
 const DistortionInspector := preload("res://addons/romgerman.audio_wizard/inspector/distortion/distortion.gd")
+const EQInspector := preload("res://addons/romgerman.audio_wizard/inspector/eq/eq.gd")
 
 var eff_amplify: AmplifyInspector
 var eff_filter: FilterInspector
@@ -16,6 +17,7 @@ var eff_chorus: ChorusInspector
 var eff_compressor: CompressorInspector
 var eff_delay: DelayInspector
 var eff_distortion: DistortionInspector
+var eff_eq: EQInspector
 
 func _enable_plugin() -> void:
 	# Add autoloads here.
@@ -40,6 +42,8 @@ func _enter_tree() -> void:
 	add_inspector_plugin(eff_delay)
 	eff_distortion = DistortionInspector.new()
 	add_inspector_plugin(eff_distortion)
+	eff_eq = EQInspector.new()
+	add_inspector_plugin(eff_eq)
 
 func _exit_tree() -> void:
 	remove_inspector_plugin(eff_amplify)
@@ -49,3 +53,4 @@ func _exit_tree() -> void:
 	remove_inspector_plugin(eff_compressor)
 	remove_inspector_plugin(eff_delay)
 	remove_inspector_plugin(eff_distortion)
+	remove_inspector_plugin(eff_eq)

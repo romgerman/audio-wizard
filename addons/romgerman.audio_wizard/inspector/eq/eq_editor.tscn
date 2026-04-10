@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bp66tlcee2dos"]
+
+[ext_resource type="Script" uid="uid://d0dsotd086s7d" path="res://addons/romgerman.audio_wizard/inspector/eq/eq_editor.gd" id="1_2uj6c"]
+
+[node name="EqEditor" type="MarginContainer" unique_id=160956862]
+custom_minimum_size = Vector2(0, 200)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_2uj6c")

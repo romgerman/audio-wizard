@@ -31,7 +31,7 @@ func draw(pos: Vector2, max_height: float, font: Font, color: Color = Color.GRAY
 		tick_text_sizes.push_back(tick_string_size)
 	
 	var max_tick_text_size: Vector2 = tick_text_sizes.max()
-	var x_offset := TICK_WIDTH * 1.5 + max_tick_text_size.x
+	var x_offset := TICK_WIDTH + max_tick_text_size.x
 	
 	for tick_db in tick_marks:
 		var y := db_to_y(tick_db, max_height)
@@ -46,7 +46,7 @@ func draw(pos: Vector2, max_height: float, font: Font, color: Color = Color.GRAY
 		owner_ctrl.draw_string(
 			font,
 			Vector2(
-				pos.x - x_offset + TICK_WIDTH * 1.5,
+				pos.x - x_offset + TICK_WIDTH,
 				y + FONT_SIZE * 0.5 - TICK_THICKNESS * 2.0 + pos.y
 			),
 			str(tick_db),

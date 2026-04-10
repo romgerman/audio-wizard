@@ -9,7 +9,9 @@ const GRAPH_RESOLUTION := 256
 
 var db_scale: DbScale
 var freq_scale: FreqScale
+
 var layout_offset_x := 0.0
+var layout_offset_y := 0.0
 
 func _ready() -> void:
 	super._ready()
@@ -30,7 +32,7 @@ func _draw() -> void:
 func draw_graph() -> void:
 	var rect := get_rect()
 	var useful_width := rect.size.x - layout_offset_x - CONTENT_PADDING * 2.0
-	var useful_height := rect.size.y - CONTENT_PADDING * 2.0
+	var useful_height := rect.size.y - CONTENT_PADDING * 2.0 - layout_offset_y
 	var eff_filter := eff_ref as AudioEffectFilter
 	var points := PackedVector2Array()
 	
@@ -62,14 +64,14 @@ func draw_layout() -> void:
 	# Db scale
 	layout_offset_x = db_scale.draw(
 		Vector2(rect.size.x - CONTENT_PADDING, CONTENT_PADDING),
-		rect.size.y - CONTENT_PADDING * 2.0,
+		rect.size.y - CONTENT_PADDING * 2.0 - layout_offset_y,
 		get_theme_default_font(),
 		ThemeUtils.modify_color(text_color, 0.5)
 	)
 	
 	# Freq scale
 	var useful_width := rect.size.x - layout_offset_x - CONTENT_PADDING * 2.0
-	freq_scale.draw(
+	layout_offset_y = freq_scale.draw(
 		Vector2(CONTENT_PADDING, rect.size.y - CONTENT_PADDING),
 		useful_width,
 		get_theme_default_font(),

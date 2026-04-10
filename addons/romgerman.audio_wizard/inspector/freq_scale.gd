@@ -3,8 +3,8 @@ extends RefCounted
 const FONT_SIZE := 12
 const TICK_HEIGHT := 6
 const TICK_THICKNESS := 1.0
-const MIN_FREQ := 1.0
-const MAX_FREQ := 20500.0
+const MIN_FREQ := 10.0
+const MAX_FREQ := 21000.0
 
 var tick_marks := [20.0, 100.0, 1000.0, 5000.0, 10000.0, 20000.0]
 
@@ -57,7 +57,7 @@ func draw(pos: Vector2, max_width: float, font: Font, color: Color = Color.GRAY)
 		
 		idx += 1
 	
-	return TICK_HEIGHT * 2.0 + FONT_SIZE
+	return TICK_HEIGHT + FONT_SIZE
 
 func freq_to_x(freq: float, width: float) -> float:
 	var t := log(freq / MIN_FREQ) / log(MAX_FREQ / MIN_FREQ)
