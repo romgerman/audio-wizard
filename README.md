@@ -16,6 +16,7 @@ For those who are tired of blindly changing parameters of audio effects in Godot
 - Compressor
 - Delay
 - Distortion
+- All EQs
 
 ## Similar addons:
 

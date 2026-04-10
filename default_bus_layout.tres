@@ -57,6 +57,7 @@ band_db/16000_hz = 24.0
 
 [sub_resource type="AudioEffectEQ6" id="AudioEffectEQ6_j3pel"]
 resource_name = "EQ6"
+band_db/32_hz = 10.3
 band_db/320_hz = -1.9
 band_db/1000_hz = -14.5
 
