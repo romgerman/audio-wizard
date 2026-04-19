@@ -17,6 +17,14 @@ For those who are tired of blindly changing parameters of audio effects in Godot
 - Delay
 - Distortion
 - All EQs
+- Hard Limiter
+- Panner
+
+**Additional visualizations:**
+
+- AudioStreamPlayer3D attenuation property
+
+    ![AudioStreamPlayer3D](readme_images/AudioStreamPlayer3D.png)
 
 ## Similar addons:
 

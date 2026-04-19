@@ -10,6 +10,7 @@ const CONTENT_PADDING := 12.0
 const LINE_THICKNESS := 1.0
 
 var db_scale: DbScale
+var layout_offset_x := 0.0
 
 func _ready() -> void:
 	super._ready()
@@ -52,7 +53,7 @@ func draw_representation() -> void:
 	draw_line(
 		Vector2(CONTENT_PADDING, threshold_height + CONTENT_PADDING),
 		Vector2(CONTENT_PADDING + 24.0 + 12.0, threshold_height + CONTENT_PADDING),
-		base_color.darkened(0.5),
+		ThemeUtils.modify_color(base_color, 0.5),
 		LINE_THICKNESS,
 	)
 	
@@ -69,18 +70,12 @@ func draw_representation() -> void:
 		text_color.lightened(0.5)
 	)
 	
-	var db_scale_width := db_scale.draw(
-		Vector2(rect.size.x + CONTENT_PADDING, rect.position.y),
-		rect.size.y,
-		get_theme_default_font(),
-		ThemeUtils.modify_color(text_color, 0.5)
-	)
-	
-	var points := PackedVector2Array()
+	var uncomp_points := PackedVector2Array()
+	var comp_points := PackedVector2Array()
 	var in_db := MIN_THRESHOLD
 	var graph_rect := Rect2(
 		Vector2(CONTENT_PADDING * 2.0 + 24.0 + 2.0, rect.position.y),
-		Vector2(rect.size.x - CONTENT_PADDING - 24.0 - 2.0 - db_scale_width, rect.size.y)
+		Vector2(rect.size.x - 24.0 - 2.0 - layout_offset_x, rect.size.y)
 	)
 	
 	while in_db <= MAX_THRESHOLD:
@@ -88,12 +83,21 @@ func draw_representation() -> void:
 		
 		var in_pos := (in_db - DbScale.MIN_DB) / (DbScale.MAX_DB - DbScale.MIN_DB) * graph_rect.size.x
 		var out_pos := graph_rect.size.y - (out_db - DbScale.MIN_DB) / (DbScale.MAX_DB - DbScale.MIN_DB) * graph_rect.size.y
-		points.push_back(Vector2(in_pos + graph_rect.position.x, out_pos + graph_rect.position.y))
+		comp_points.push_back(Vector2(in_pos + graph_rect.position.x, out_pos + graph_rect.position.y))
+		var uncomp_out_pos := graph_rect.size.y - (in_db - DbScale.MIN_DB) / (DbScale.MAX_DB - DbScale.MIN_DB) * graph_rect.size.y
+		uncomp_points.push_back(Vector2(in_pos + graph_rect.position.x, uncomp_out_pos + graph_rect.position.y))
 		
 		in_db += 0.5
 	
 	draw_polyline(
-		points,
+		uncomp_points,
+		ThemeUtils.modify_color(base_color, 0.2),
+		LINE_THICKNESS * 0.5,
+		true
+	)
+	
+	draw_polyline(
+		comp_points,
 		accent_color,
 		LINE_THICKNESS,
 		true
@@ -104,6 +108,15 @@ func draw_layout() -> void:
 	
 	# Background
 	draw_rect(rect, base_color, true)
+	
+	var content_rect := rect.grow(-CONTENT_PADDING)
+	
+	layout_offset_x = db_scale.draw(
+		Vector2(content_rect.size.x + CONTENT_PADDING, content_rect.position.y),
+		content_rect.size.y,
+		get_theme_default_font(),
+		ThemeUtils.modify_color(text_color, 0.5)
+	)
 
 # servers/audio/effects/audio_effect_compressor.cpp#e1c1d7d1d7d9b3f3f64c9887107f55a22f5d0a31
 #/**************************************************************************/

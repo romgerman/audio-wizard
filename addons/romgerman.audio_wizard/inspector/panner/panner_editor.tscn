@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://c4qcljyhs2k51"]
+
+[ext_resource type="Script" uid="uid://c0twd4y4ithix" path="res://addons/romgerman.audio_wizard/inspector/panner/panner_editor.gd" id="1_w7ofl"]
+
+[node name="PannerEditor" type="MarginContainer" unique_id=92357887]
+custom_minimum_size = Vector2(0, 200)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_w7ofl")

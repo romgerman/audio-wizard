@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dmx83uaw6axg2"]
+
+[ext_resource type="Script" uid="uid://bs8ohahwh3aty" path="res://addons/romgerman.audio_wizard/inspector/audio_stream_player_3d/audio_stream_player_3d_editor.gd" id="1_tyfw4"]
+
+[node name="AudioStreamPlayer3dEditor" type="MarginContainer" unique_id=179463534]
+clip_contents = true
+custom_minimum_size = Vector2(0, 124)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_tyfw4")

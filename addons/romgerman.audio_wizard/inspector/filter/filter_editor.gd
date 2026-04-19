@@ -23,6 +23,9 @@ func _ready() -> void:
 	
 	db_scale = DbScale.new(self)
 	freq_scale = FreqScale.new(self)
+	
+	# Redraw the scales with correct offsets
+	queue_redraw.call_deferred()
 
 func _draw() -> void:
 	draw_layout()
@@ -62,9 +65,10 @@ func draw_layout() -> void:
 	draw_rect(rect, base_color, true)
 	
 	# Db scale
+	var useful_height := rect.size.y - CONTENT_PADDING * 2.0 - layout_offset_y
 	layout_offset_x = db_scale.draw(
 		Vector2(rect.size.x - CONTENT_PADDING, CONTENT_PADDING),
-		rect.size.y - CONTENT_PADDING * 2.0 - layout_offset_y,
+		useful_height,
 		get_theme_default_font(),
 		ThemeUtils.modify_color(text_color, 0.5)
 	)
@@ -76,6 +80,15 @@ func draw_layout() -> void:
 		useful_width,
 		get_theme_default_font(),
 		ThemeUtils.modify_color(text_color, 0.5)
+	)
+	
+	# Draw 0dB
+	var line_y := remap(0.0, DbScale.MIN_DB, DbScale.MAX_DB, useful_height, 0.0)
+	draw_line(
+		Vector2(CONTENT_PADDING, line_y + CONTENT_PADDING),
+		Vector2(rect.size.x - CONTENT_PADDING - layout_offset_x, line_y + CONTENT_PADDING),
+		ThemeUtils.modify_color(text_color, 0.85),
+		1.0
 	)
 
 # This method is compiled from: servers/audio/audio_filter_sw.cpp#0b806ee0fc9097fa7bda7ac0109191c9c5e0a1ac

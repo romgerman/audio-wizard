@@ -64,7 +64,7 @@ func freq_to_x(freq: float, width: float) -> float:
 	return t * width
 
 func format_freq(freq: float) -> String:
-	if freq > 1000.0:
+	if freq >= 1000.0:
 		return str(floori(freq / 1000.0)) + "k"
 	else:
 		return str(floori(freq))

@@ -18,6 +18,10 @@ config/icon="res://icon.svg"
 
 buses/default_bus_layout="uid://bvamgwon0ae0e"
 
+[editor_overrides]
+
+text_editor/external/use_external_editor=false
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/kenyoni/plugin_reloader/plugin.cfg", "res://addons/romgerman.audio_wizard/plugin.cfg")

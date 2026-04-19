@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://ca03v2f43n0n1"]
+
+[ext_resource type="Script" uid="uid://co3ccxw81i4ao" path="res://addons/romgerman.audio_wizard/inspector/hard_limiter/hard_limiter_editor.gd" id="1_4askc"]
+
+[node name="HardLimiterEditor" type="MarginContainer" unique_id=1106235729]
+custom_minimum_size = Vector2(0, 200)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_4askc")
