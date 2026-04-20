@@ -27,6 +27,10 @@ func _ready() -> void:
 	# Redraw the scales with correct offsets
 	queue_redraw.call_deferred()
 
+#func _process(delta: float) -> void:
+	#if eff_ref:
+		#queue_redraw()
+
 func _draw() -> void:
 	draw_layout()
 	if eff_ref:
@@ -37,7 +41,10 @@ func draw_graph() -> void:
 	var useful_width := rect.size.x - layout_offset_x - CONTENT_PADDING * 2.0
 	var useful_height := rect.size.y - CONTENT_PADDING * 2.0 - layout_offset_y
 	var eff_filter := eff_ref as AudioEffectFilter
-	var points := PackedVector2Array()
+	var line_arr := [PackedVector2Array()]
+	var line_idx := 0
+	var is_line_split := false
+	var line_split_start_db := 0.0
 	
 	for i in GRAPH_RESOLUTION:
 		var t := float(i) / float(GRAPH_RESOLUTION - 1)
@@ -52,11 +59,31 @@ func draw_graph() -> void:
 		var db := 20.0 * log(mag) / log(10.0)
 		
 		var x := t * useful_width
-		var db_clamped := clampf(db, DbScale.MIN_DB, DbScale.MAX_DB)
-		var y := remap(db_clamped, DbScale.MIN_DB, DbScale.MAX_DB, useful_height, 0.0)
-		points.push_back(Vector2(x + CONTENT_PADDING, y + CONTENT_PADDING))
+		
+		if db < DbScale.MIN_DB or db > DbScale.MAX_DB:
+			line_split_start_db = DbScale.MIN_DB if db < DbScale.MIN_DB else DbScale.MAX_DB
+			if not is_line_split:
+				var y := remap(line_split_start_db, DbScale.MIN_DB, DbScale.MAX_DB, useful_height, 0.0)
+				line_arr[line_idx].push_back(Vector2(x + CONTENT_PADDING, y + CONTENT_PADDING))
+				
+				is_line_split = true
+				line_arr.push_back(PackedVector2Array())
+				line_idx += 1
+			continue
+		
+		if is_line_split:
+			var y := remap(line_split_start_db, DbScale.MIN_DB, DbScale.MAX_DB, useful_height, 0.0)
+			line_arr[line_idx].push_back(Vector2(x + CONTENT_PADDING, y + CONTENT_PADDING))
+		
+		var y := remap(db, DbScale.MIN_DB, DbScale.MAX_DB, useful_height, 0.0)
+		line_arr[line_idx].push_back(Vector2(x + CONTENT_PADDING, y + CONTENT_PADDING))
+		
+		is_line_split = false
+		line_split_start_db = 0.0
 	
-	draw_polyline(points, accent_color, 1.0, true)
+	for line_points: PackedVector2Array in line_arr:
+		if line_points.size() > 2:
+			draw_polyline(line_points, accent_color, 1.0, true)
 
 func draw_layout() -> void:
 	var rect := get_rect()

@@ -33,7 +33,7 @@ func draw_meters() -> void:
 	var output_volume := input_volume + eff_amplify.volume_db
 	
 	# Draw input
-	var in_vol_y := db_to_y(input_volume, useful_height)
+	var in_vol_y := db_scale.db_to_y(input_volume, useful_height)
 	var in_begin_pos := Vector2(CONTENT_PADDING, CONTENT_PADDING + in_vol_y)
 	draw_line(
 		in_begin_pos,
@@ -42,10 +42,14 @@ func draw_meters() -> void:
 		LINE_THICKNESS,
 		true
 	)
+	var in_text_pos := in_begin_pos + Vector2(0, ThemeUtils.FONT_SIZE + 2)
+	if in_text_pos.y > useful_height:
+		in_text_pos.y -= ThemeUtils.FONT_SIZE + 2 + LINE_THICKNESS + 3
+	in_text_pos.y = clampf(in_text_pos.y, ThemeUtils.FONT_SIZE, rect.size.y - 2)
 	draw_string(
 		get_theme_default_font(),
-		in_begin_pos + Vector2(0, ThemeUtils.FONT_SIZE + 2),
-		"in (bus) %0.1fdB" % input_volume,
+		in_text_pos,
+		"in (bus) %0.2fdB" % input_volume,
 		HorizontalAlignment.HORIZONTAL_ALIGNMENT_LEFT,
 		-1,
 		ThemeUtils.FONT_SIZE,
@@ -53,7 +57,7 @@ func draw_meters() -> void:
 	)
 	
 	# Draw output
-	var out_vol_y := db_to_y(output_volume, useful_height)
+	var out_vol_y := db_scale.db_to_y(output_volume, useful_height)
 	var out_being_pos := Vector2(CONTENT_PADDING + useful_width * 0.5, CONTENT_PADDING + out_vol_y)
 	draw_line(
 		out_being_pos,
@@ -62,9 +66,13 @@ func draw_meters() -> void:
 		LINE_THICKNESS,
 		true
 	)
+	var out_text_pos := out_being_pos + Vector2(0, ThemeUtils.FONT_SIZE + 2)
+	if out_text_pos.y > useful_height:
+		out_text_pos.y -= ThemeUtils.FONT_SIZE + 2 + LINE_THICKNESS + 3
+	out_text_pos.y = clampf(out_text_pos.y, ThemeUtils.FONT_SIZE, rect.size.y - 2)
 	draw_string(
 		get_theme_default_font(),
-		out_being_pos + Vector2(0, ThemeUtils.FONT_SIZE + 2),
+		out_text_pos,
 		"out %0.2fdB" % output_volume,
 		HorizontalAlignment.HORIZONTAL_ALIGNMENT_LEFT,
 		-1,
@@ -78,14 +86,21 @@ func draw_layout() -> void:
 	# Background
 	draw_rect(rect, base_color, true)
 	
-	# Scale
+	var content_rect := rect.grow(-CONTENT_PADDING)
+	
+	# Db scale
 	layout_offset_x = db_scale.draw(
 		Vector2(rect.size.x - CONTENT_PADDING, CONTENT_PADDING),
-		rect.size.y - CONTENT_PADDING * 2.0,
+		content_rect.size.y,
 		get_theme_default_font(),
 		ThemeUtils.modify_color(text_color, 0.5)
 	)
-
-func db_to_y(db: float, height: float) -> float:
-	var t := (db - DbScale.MAX_DB) / (DbScale.MIN_DB - DbScale.MAX_DB)
-	return t * height
+	
+	# Draw 0dB
+	var line_y := remap(0.0, DbScale.MIN_DB, DbScale.MAX_DB, content_rect.size.y, 0.0)
+	draw_line(
+		Vector2(CONTENT_PADDING, line_y + CONTENT_PADDING),
+		Vector2(rect.size.x - CONTENT_PADDING - layout_offset_x, line_y + CONTENT_PADDING),
+		ThemeUtils.modify_color(text_color, 0.85),
+		1.0
+	)
