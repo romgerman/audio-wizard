@@ -13,9 +13,7 @@ var db_scale: DbScale
 var layout_offset_x := 0.0
 
 func _ready() -> void:
-	super._ready()
-	
-	if eff_ref:
+	if eff_handle.has_effect():
 		EditorInterface.get_inspector().property_edited.connect(func (_prop: String):
 			queue_redraw()
 		)
@@ -24,7 +22,7 @@ func _ready() -> void:
 
 func _draw() -> void:
 	draw_layout()
-	if eff_ref:
+	if eff_handle.has_effect():
 		draw_representation()
 
 func draw_representation() -> void:
@@ -38,7 +36,7 @@ func draw_representation() -> void:
 		LINE_THICKNESS
 	)
 	
-	var eff_compressor := eff_ref as AudioEffectCompressor
+	var eff_compressor := eff_handle.get_effect() as AudioEffectCompressor
 	var threshold_height := remap(eff_compressor.threshold, DbScale.MIN_DB, DbScale.MAX_DB, rect.size.y, 0.0)
 	draw_rect(
 		Rect2(

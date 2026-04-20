@@ -20,9 +20,7 @@ var bands := []
 var bands_coeff := []
 
 func _ready() -> void:
-	super._ready()
-	
-	if eff_ref:
+	if eff_handle.has_effect():
 		EditorInterface.get_inspector().property_edited.connect(func (_prop: String):
 			queue_redraw()
 		)
@@ -30,7 +28,7 @@ func _ready() -> void:
 	freq_scale = FreqScale.new(self)
 	db_scale = DbScale.new(self)
 	
-	if eff_ref:
+	if eff_handle.has_effect():
 		get_bands()
 		recalculate_band_coefficients()
 
@@ -40,14 +38,14 @@ func _ready() -> void:
 
 func _draw() -> void:
 	draw_layout()
-	if eff_ref:
+	if eff_handle.has_effect():
 		draw_graph()
 
 func draw_graph() -> void:
 	var rect := get_rect()
 	var useful_width := rect.size.x - CONTENT_PADDING * 2.0
 	var useful_height := rect.size.y - CONTENT_PADDING * 2.0 - y_offset
-	var eff_eq := eff_ref as AudioEffectEQ
+	var eff_eq := eff_handle.get_effect() as AudioEffectEQ
 	var points := PackedVector2Array()
 	
 	for i in GRAPH_RESOLUTION:
@@ -111,7 +109,7 @@ func draw_layout() -> void:
 		)
 
 func get_bands():
-	var eff_eq := eff_ref as AudioEffectEQ
+	var eff_eq := eff_handle.get_effect() as AudioEffectEQ
 	for p in eff_eq.get_property_list():
 		if (p.name as String).begins_with("band_db"):
 			bands.push_back(p.name)

@@ -1,22 +1,14 @@
 extends Control
 
+const EffectHandle := preload("res://addons/romgerman.audio_wizard/effect_handle.gd")
 const ThemeUtils := preload("res://addons/romgerman.audio_wizard/theme_utils.gd")
 
-var audio_bus_index := -1
-var audio_eff_index := -1
-
-var eff_ref: AudioEffect
+var eff_handle: EffectHandle = EffectHandle.new()
 
 var base_color: Color
 var accent_color: Color
 var text_color: Color
 var is_light_theme: bool
-
-func _ready() -> void:
-	if audio_bus_index != -1 and audio_eff_index != -1:
-		eff_ref = AudioServer.get_bus_effect(audio_bus_index, audio_eff_index)
-	
-	_get_theme_colors()
 
 func _get_theme_colors() -> void:
 	base_color = ThemeUtils.get_base_color(self)
@@ -25,6 +17,8 @@ func _get_theme_colors() -> void:
 	text_color = Color.BLACK if is_light_theme else Color.WHITE
 
 func _notification(what: int) -> void:
+	if what == NOTIFICATION_READY:
+		_get_theme_colors()
 	if what == NOTIFICATION_THEME_CHANGED:
 		_get_theme_colors()
 		queue_redraw()

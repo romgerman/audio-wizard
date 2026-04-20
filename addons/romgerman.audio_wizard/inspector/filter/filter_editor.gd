@@ -14,9 +14,7 @@ var layout_offset_x := 0.0
 var layout_offset_y := 0.0
 
 func _ready() -> void:
-	super._ready()
-	
-	if eff_ref:
+	if eff_handle.has_effect():
 		EditorInterface.get_inspector().property_edited.connect(func (_prop: String):
 			queue_redraw()
 		)
@@ -33,14 +31,14 @@ func _ready() -> void:
 
 func _draw() -> void:
 	draw_layout()
-	if eff_ref:
+	if eff_handle.has_effect():
 		draw_graph()
 
 func draw_graph() -> void:
 	var rect := get_rect()
 	var useful_width := rect.size.x - layout_offset_x - CONTENT_PADDING * 2.0
 	var useful_height := rect.size.y - CONTENT_PADDING * 2.0 - layout_offset_y
-	var eff_filter := eff_ref as AudioEffectFilter
+	var eff_filter := eff_handle.get_effect() as AudioEffectFilter
 	var line_arr := [PackedVector2Array()]
 	var line_idx := 0
 	var is_line_split := false
@@ -176,26 +174,27 @@ func get_db_at_freq(p_freq: float, cutoff_hz: float, resonance: float, gain_db: 
 	var b1 := 0.0
 	var b2 := 0.0
 	
-	if eff_ref is AudioEffectHighPassFilter:
+	var eff_inst := eff_handle.get_effect()
+	if eff_inst is AudioEffectHighPassFilter:
 		b0 = (1.0 + cos_v) / 2.0
 		b1 = -(1.0 + cos_v)
 		b2 = (1.0 + cos_v) / 2.0
 		a1 = -2.0 * cos_v
 		a2 = 1.0 - alpha
-	elif eff_ref is AudioEffectBandPassFilter:
+	elif eff_inst is AudioEffectBandPassFilter:
 		b0 = alpha * sqrt(Q + 1)
 		b1 = 0.0
 		b2 = -alpha * sqrt(Q + 1)
 		a1 = -2.0 * cos_v
 		a2 = 1.0 - alpha
-	elif eff_ref is AudioEffectNotchFilter:
+	elif eff_inst is AudioEffectNotchFilter:
 		b0 = 1.0
 		b1 = -2.0 * cos_v
 		b2 = 1.0
 		a1 = -2.0 * cos_v
 		a2 = 1.0 - alpha
-	#elif eff_ref is PeakFilter
-	elif eff_ref is AudioEffectBandLimitFilter:
+	#elif eff_inst is PeakFilter
+	elif eff_inst is AudioEffectBandLimitFilter:
 		var hicutoff := resonance
 		var centercutoff := (cutoff_hz + resonance) / 2.0
 		var bandwidth := (log(centercutoff) - log(hicutoff)) / log(2.0)
@@ -208,7 +207,7 @@ func get_db_at_freq(p_freq: float, cutoff_hz: float, resonance: float, gain_db: 
 		b2 = -alpha
 		a1 = -2 * cos(omega)
 		a2 = 1 - alpha
-	elif eff_ref is AudioEffectLowShelfFilter:
+	elif eff_inst is AudioEffectLowShelfFilter:
 		var tmpq := sqrt(Q)
 		if tmpq <= 0:
 			tmpq = 0.001
@@ -220,7 +219,7 @@ func get_db_at_freq(p_freq: float, cutoff_hz: float, resonance: float, gain_db: 
 		b2 = tmpgain * ((tmpgain + 1.0) - (tmpgain - 1.0) * cos_v - beta * sin_v)
 		a1 = -2.0 * ((tmpgain - 1.0) + (tmpgain + 1.0) * cos_v)
 		a2 = ((tmpgain + 1.0) + (tmpgain - 1.0) * cos_v - beta * sin_v)
-	elif eff_ref is AudioEffectHighShelfFilter:
+	elif eff_inst is AudioEffectHighShelfFilter:
 		var tmpq := sqrt(Q)
 		if tmpq <= 0:
 			tmpq = 0.001
@@ -232,7 +231,7 @@ func get_db_at_freq(p_freq: float, cutoff_hz: float, resonance: float, gain_db: 
 		b2 = tmpgain * ((tmpgain + 1.0) + (tmpgain - 1.0) * cos_v - beta * sin_v)
 		a1 = 2.0 * ((tmpgain - 1.0) - (tmpgain + 1.0) * cos_v)
 		a2 = ((tmpgain + 1.0) - (tmpgain - 1.0) * cos_v - beta * sin_v)
-	else: # eff_ref is AudioEffectLowPassFilter
+	else: # eff_inst is AudioEffectLowPassFilter
 		b0 = (1.0 - cos_v) / 2.0
 		b1 = 1.0 - cos_v
 		b2 = (1.0 - cos_v) / 2.0

@@ -6,22 +6,20 @@ const CONTENT_PADDING := 12.0
 const LINE_THICKNESS := 1.0
 
 func _ready() -> void:
-	super._ready()
-	
-	if eff_ref:
+	if eff_handle.has_effect():
 		EditorInterface.get_inspector().property_edited.connect(func (_prop: String):
 			queue_redraw()
 		)
 
 func _draw() -> void:
 	draw_layout()
-	if eff_ref:
+	if eff_handle.has_effect():
 		draw_grid()
 
 func draw_grid() -> void:
 	var rect := get_rect().grow(-CONTENT_PADDING)
 	var grid_scale := MAX_BUFFER_SEC
-	var eff_capture := eff_ref as AudioEffectCapture
+	var eff_capture := eff_handle.get_effect() as AudioEffectCapture
 	
 	if eff_capture.buffer_length < 1.0:
 		grid_scale = 1.0

@@ -1,6 +1,7 @@
 # meta-name: Effect Inspector
 extends _BASE_
 
+const EffectHandle := preload("res://addons/romgerman.audio_wizard/effect_handle.gd")
 const InspectorEditor := preload("res://addons/romgerman.audio_wizard/inspector/_CLASS_SNAKE_CASE_/_CLASS_SNAKE_CASE__editor.tscn")
 
 func _can_handle(object: Object) -> bool:
@@ -19,6 +20,5 @@ func _parse_begin(object: Object) -> void:
 				break
 	
 	var ie := InspectorEditor.instantiate()
-	ie.audio_bus_index = used_bus_index
-	ie.audio_eff_index = used_eff_index
+	ie.eff_handle = EffectHandle.create(used_bus_index, used_eff_index)
 	add_custom_control(ie)

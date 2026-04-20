@@ -11,9 +11,7 @@ const CONTENT_PADDING := 12.0
 const LINE_THICKNESS := 2.0
 
 func _ready() -> void:
-	super._ready()
-	
-	if eff_ref:
+	if eff_handle.has_effect():
 		EditorInterface.get_inspector().property_edited.connect(func (_prop: String):
 			queue_redraw()
 		)
@@ -24,12 +22,12 @@ func _ready() -> void:
 
 func _draw() -> void:
 	draw_layout()
-	if eff_ref:
+	if eff_handle.has_effect():
 		draw_representation()
 
 func draw_representation() -> void:
 	var rect := get_rect().grow(-CONTENT_PADDING)
-	var eff_dist := eff_ref as AudioEffectDistortion
+	var eff_dist := eff_handle.get_effect() as AudioEffectDistortion
 	
 	var points := PackedVector2Array()
 	var input := MIN_GRAPH

@@ -11,22 +11,20 @@ var layout_offset_x := 0.0
 var db_scale: DbScale
 
 func _ready() -> void:
-	super._ready()
-	
-	if eff_ref:
+	if eff_handle.has_effect():
 		EditorInterface.get_inspector().property_edited.connect(func (_prop: String):
 			queue_redraw()
 		)
 	
 	db_scale = DbScale.new(self)
 
-func _process(delta: float) -> void:
-	if eff_ref:
-		queue_redraw()
+#func _process(delta: float) -> void:
+	#if eff_handle.has_effect():
+		#queue_redraw()
 
 func _draw() -> void:
 	draw_layout()
-	if eff_ref:
+	if eff_handle.has_effect():
 		draw_representation()
 
 var time := 0.0
@@ -35,7 +33,7 @@ func draw_representation() -> void:
 	time += 0.1
 	var rect := get_rect().grow(-CONTENT_PADDING)
 	var points := PackedVector2Array()
-	var eff_limiter := eff_ref as AudioEffectHardLimiter
+	var eff_limiter := eff_handle.get_effect() as AudioEffectHardLimiter
 	var in_db := DbScale.MIN_DB
 	
 	while in_db <= DbScale.MAX_DB:

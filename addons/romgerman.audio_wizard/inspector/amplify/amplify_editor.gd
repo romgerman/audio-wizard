@@ -10,17 +10,15 @@ var db_scale: DbScale
 var layout_offset_x := 0.0
 
 func _ready() -> void:
-	super._ready()
-	
 	db_scale = DbScale.new(self)
 
 func _process(delta: float) -> void:
-	if eff_ref:
+	if eff_handle.has_effect():
 		queue_redraw()
 
 func _draw() -> void:
 	draw_layout()
-	if eff_ref:
+	if eff_handle.has_effect():
 		draw_meters()
 
 func draw_meters() -> void:
@@ -28,8 +26,8 @@ func draw_meters() -> void:
 	var useful_width := rect.size.x - layout_offset_x - CONTENT_PADDING * 2.0
 	var useful_height := rect.size.y - CONTENT_PADDING * 2.0
 	
-	var eff_amplify := eff_ref as AudioEffectAmplify
-	var input_volume := AudioServer.get_bus_volume_db(audio_bus_index)
+	var eff_amplify := eff_handle.get_effect() as AudioEffectAmplify
+	var input_volume := AudioServer.get_bus_volume_db(eff_handle.audio_bus_index)
 	var output_volume := input_volume + eff_amplify.volume_db
 	
 	# Draw input

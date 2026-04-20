@@ -5,9 +5,7 @@ const CONTENT_PADDING := 12.0
 const INDICATOR_RADIUS := 6.0
 
 func _ready() -> void:
-	super._ready()
-	
-	if eff_ref:
+	if eff_handle.has_effect():
 		EditorInterface.get_inspector().property_edited.connect(func (_prop: String):
 			queue_redraw()
 		)
@@ -18,12 +16,12 @@ func _ready() -> void:
 
 func _draw() -> void:
 	draw_layout()
-	if eff_ref:
+	if eff_handle.has_effect():
 		draw_representation()
 
 func draw_representation() -> void:
 	var content_rect := get_rect().grow(-CONTENT_PADDING)
-	var eff_pan := eff_ref as AudioEffectPanner
+	var eff_pan := eff_handle.get_effect() as AudioEffectPanner
 	var pan := eff_pan.pan
 	
 	var pan_pos_x := (pan + 1.0) / 2.0 * content_rect.size.x

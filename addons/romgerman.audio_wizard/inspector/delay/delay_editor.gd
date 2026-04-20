@@ -14,9 +14,7 @@ const FEEDBACK_RESOLUTION := 48
 const LINE_THICKNESS := 3.0
 
 func _ready() -> void:
-	super._ready()
-	
-	if eff_ref:
+	if eff_handle.has_effect():
 		EditorInterface.get_inspector().property_edited.connect(func (_prop: String):
 			queue_redraw()
 		)
@@ -27,13 +25,13 @@ func _ready() -> void:
 
 func _draw() -> void:
 	draw_layout()
-	if eff_ref:
+	if eff_handle.has_effect():
 		draw_representation()
 	draw_overlay()
 
 func draw_representation() -> void:
 	var rect := get_rect().grow(-CONTENT_PADDING)
-	var eff_delay := eff_ref as AudioEffectDelay
+	var eff_delay := eff_handle.get_effect() as AudioEffectDelay
 	
 	var tap_origin := rect.get_center() - Vector2(0, -rect.size.y * 0.5)
 	if eff_delay.feedback_active:
@@ -44,7 +42,7 @@ func draw_representation() -> void:
 		draw_tap(2, tap_origin, rect)
 
 func draw_tap(num: int, pos: Vector2, rect: Rect2) -> void:
-	var eff_delay := eff_ref as AudioEffectDelay
+	var eff_delay := eff_handle.get_effect() as AudioEffectDelay
 	var tap_delay: float = eff_delay.get("tap%s_delay_ms" % num)
 	var radius := lerpf(10.0, rect.size.y, tap_delay / (TAP_MAX_DELAY_MS - TAP_MIN_DELAY_MS))
 
@@ -73,7 +71,7 @@ func draw_tap(num: int, pos: Vector2, rect: Rect2) -> void:
 	draw_circle(pos + pan_pos, LINE_THICKNESS * 2.0, accent_color, true, -1, true)
 
 func draw_feedback(pos: Vector2, rect: Rect2) -> void:
-	var eff_delay := eff_ref as AudioEffectDelay
+	var eff_delay := eff_handle.get_effect() as AudioEffectDelay
 	var feedback_delay := eff_delay.feedback_delay_ms
 	var feedback_level := eff_delay.feedback_level_db
 	var lowpass := eff_delay.feedback_lowpass

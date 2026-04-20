@@ -10,16 +10,14 @@ const CONTENT_PADDING := 12.0
 const LINE_THICKNESS := 1.0
 
 func _ready() -> void:
-	super._ready()
-	
-	if eff_ref:
+	if eff_handle.has_effect():
 		EditorInterface.get_inspector().property_edited.connect(func (_prop: String):
 			queue_redraw()
 		)
 
 func _draw() -> void:
 	draw_layout()
-	if eff_ref:
+	if eff_handle.has_effect():
 		draw_voices()
 	draw_overlay()
 
@@ -27,7 +25,7 @@ func draw_voices() -> void:
 	var rect := get_rect().grow(-CONTENT_PADDING)
 	var useful_width := rect.size.x
 	
-	var eff_chorus := eff_ref as AudioEffectChorus
+	var eff_chorus := eff_handle.get_effect() as AudioEffectChorus
 	
 	for voice_index in eff_chorus.voice_count:
 		var voice_pan := eff_chorus.get_voice_pan(voice_index)

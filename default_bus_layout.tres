@@ -11,7 +11,7 @@ resonance = 0.42
 [sub_resource type="AudioEffectLowShelfFilter" id="AudioEffectLowShelfFilter_j3pel"]
 resource_name = "LowShelfFilter"
 cutoff_hz = 4124.0
-resonance = 0.95
+resonance = 0.94
 gain = 0.4
 
 [sub_resource type="AudioEffectHighPassFilter" id="AudioEffectHighPassFilter_j3pel"]
@@ -28,6 +28,7 @@ gain = 0.44
 [sub_resource type="AudioEffectNotchFilter" id="AudioEffectNotchFilter_j3pel"]
 resource_name = "NotchFilter"
 cutoff_hz = 1788.0
+resonance = 0.26
 
 [sub_resource type="AudioEffectBandLimitFilter" id="AudioEffectBandLimitFilter_j3pel"]
 resource_name = "BandLimitFilter"
@@ -102,7 +103,6 @@ ratio = 2.0
 
 [sub_resource type="AudioEffectHardLimiter" id="AudioEffectHardLimiter_j3pel"]
 resource_name = "HardLimiter"
-ceiling_db = -6.05
 
 [sub_resource type="AudioEffectPanner" id="AudioEffectPanner_j3pel"]
 resource_name = "Panner"
