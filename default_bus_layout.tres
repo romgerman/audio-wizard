@@ -28,7 +28,7 @@ gain = 0.44
 [sub_resource type="AudioEffectNotchFilter" id="AudioEffectNotchFilter_j3pel"]
 resource_name = "NotchFilter"
 cutoff_hz = 1788.0
-resonance = 0.26
+resonance = 0.25
 
 [sub_resource type="AudioEffectBandLimitFilter" id="AudioEffectBandLimitFilter_j3pel"]
 resource_name = "BandLimitFilter"
@@ -42,7 +42,6 @@ buffer_length = 1.26
 
 [sub_resource type="AudioEffectChorus" id="AudioEffectChorus_j3pel"]
 resource_name = "Chorus"
-voice/1/pan = -0.56
 
 [sub_resource type="AudioEffectDelay" id="AudioEffectDelay_j3pel"]
 resource_name = "Delay"
@@ -65,10 +64,10 @@ post_gain = 13.37
 
 [sub_resource type="AudioEffectEQ" id="AudioEffectEQ_j3pel"]
 resource_name = "EQ"
-band_db/32_hz = -11.7
-band_db/100_hz = 24.0
+band_db/32_hz = 24.0
+band_db/100_hz = 12.0
 band_db/1000_hz = -60.0
-band_db/3200_hz = 24.0
+band_db/3200_hz = -60.0
 
 [sub_resource type="AudioEffectEQ10" id="AudioEffectEQ10_j3pel"]
 resource_name = "EQ10"
@@ -82,8 +81,13 @@ resource_name = "EQ21"
 band_db/125_hz = 11.2
 band_db/175_hz = -18.6
 band_db/250_hz = -23.5
-band_db/350_hz = 24.0
-band_db/1400_hz = -45.3
+band_db/350_hz = -60.0
+band_db/500_hz = -4.7
+band_db/700_hz = 24.0
+band_db/1000_hz = 15.4
+band_db/1400_hz = -60.0
+band_db/2000_hz = 10.4
+band_db/2800_hz = -54.9
 band_db/11000_hz = 24.0
 band_db/16000_hz = 24.0
 
@@ -95,10 +99,11 @@ band_db/1000_hz = -14.5
 
 [sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_j3pel"]
 resource_name = "Amplify"
+volume_db = -15.09
 
 [sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_j3pel"]
 resource_name = "Compressor"
-threshold = -47.7
+threshold = -28.9
 ratio = 2.0
 
 [sub_resource type="AudioEffectHardLimiter" id="AudioEffectHardLimiter_j3pel"]
@@ -163,7 +168,7 @@ bus/3/name = &"New Bus"
 bus/3/solo = false
 bus/3/mute = false
 bus/3/bypass_fx = false
-bus/3/volume_db = 0.0
+bus/3/volume_db = -16.400402
 bus/3/send = &"Master"
 bus/3/effect/0/effect = SubResource("AudioEffectAmplify_j3pel")
 bus/3/effect/0/enabled = true

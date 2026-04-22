@@ -8,8 +8,8 @@ const EQ_MIN_DB := -60.0
 const EQ_MAX_DB := 24.0
 
 const CONTENT_PADDING := 12.0
-const GRAPH_RESOLUTION := 128.0
-const LINE_THICKNESS := 2.0
+const GRAPH_RESOLUTION := 256
+const LINE_THICKNESS := 1.0
 
 var freq_scale: FreqScale
 var db_scale: DbScale
@@ -46,7 +46,10 @@ func draw_graph() -> void:
 	var useful_width := rect.size.x - CONTENT_PADDING * 2.0
 	var useful_height := rect.size.y - CONTENT_PADDING * 2.0 - y_offset
 	var eff_eq := eff_handle.get_effect() as AudioEffectEQ
-	var points := PackedVector2Array()
+	var line_arr := [PackedVector2Array()]
+	var line_idx := 0
+	var is_line_split := false
+	var line_split_start_db := 0.0
 	
 	for i in GRAPH_RESOLUTION:
 		var t := float(i) / float(GRAPH_RESOLUTION - 1)
@@ -64,13 +67,32 @@ func draw_graph() -> void:
 			i_band += 1
 		
 		var db := total
-		
 		var x := t * useful_width
-		var db_clamped := clampf(db, EQ_MIN_DB, EQ_MAX_DB)
-		var y := remap(db_clamped, EQ_MIN_DB, EQ_MAX_DB, useful_height, 0.0)
-		points.push_back(Vector2(x + CONTENT_PADDING, y + CONTENT_PADDING))
+		
+		if db < EQ_MIN_DB or db > EQ_MAX_DB:
+			line_split_start_db = EQ_MIN_DB if db < EQ_MIN_DB else EQ_MAX_DB
+			if not is_line_split:
+				var y := remap(line_split_start_db, EQ_MIN_DB, EQ_MAX_DB, useful_height, 0.0)
+				line_arr[line_idx].push_back(Vector2(x + CONTENT_PADDING, y + CONTENT_PADDING))
+				
+				is_line_split = true
+				line_arr.push_back(PackedVector2Array())
+				line_idx += 1
+			continue
+		
+		if is_line_split:
+			var y := remap(line_split_start_db, EQ_MIN_DB, EQ_MAX_DB, useful_height, 0.0)
+			line_arr[line_idx].push_back(Vector2(x + CONTENT_PADDING, y + CONTENT_PADDING))
+		
+		var y := remap(db, EQ_MIN_DB, EQ_MAX_DB, useful_height, 0.0)
+		line_arr[line_idx].push_back(Vector2(x + CONTENT_PADDING, y + CONTENT_PADDING))
+		
+		is_line_split = false
+		line_split_start_db = 0.0
 
-	draw_polyline(points, accent_color, 1.0, true)
+	for line_points: PackedVector2Array in line_arr:
+		if line_points.size() > 2:
+			draw_polyline(line_points, accent_color, LINE_THICKNESS, true)
 
 func draw_layout() -> void:
 	var rect := get_rect()
