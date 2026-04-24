@@ -22,15 +22,16 @@ func _ready() -> void:
 	#if eff_handle.has_effect():
 		#queue_redraw()
 
+#func _process(delta: float) -> void:
+	#if eff_handle.has_effect():
+		#queue_redraw()
+
 func _draw() -> void:
 	draw_layout()
 	if eff_handle.has_effect():
 		draw_representation()
 
-var time := 0.0
-
 func draw_representation() -> void:
-	time += 0.1
 	var rect := get_rect().grow(-CONTENT_PADDING)
 	var points := PackedVector2Array()
 	var eff_limiter := eff_handle.get_effect() as AudioEffectHardLimiter
@@ -44,14 +45,19 @@ func draw_representation() -> void:
 			eff_limiter.pre_gain_db
 		)
 		var out_db := linear_to_db(out_lin)
-		out_db = clampf(out_db, DbScale.MIN_DB, DbScale.MAX_DB)
+		
+		if out_db < DbScale.MIN_DB or out_db > DbScale.MAX_DB:
+			in_db += 0.5
+			continue
 		
 		var in_pos := (in_db - DbScale.MIN_DB) / (DbScale.MAX_DB - DbScale.MIN_DB) * (rect.size.x - layout_offset_x)
 		var out_pos := rect.size.y - (out_db - DbScale.MIN_DB) / (DbScale.MAX_DB - DbScale.MIN_DB) * rect.size.y
 		points.push_back(Vector2(in_pos + rect.position.x, out_pos + rect.position.y))
 		
 		in_db += 0.5
-	draw_polyline(points, accent_color, LINE_THICKNESS, true)
+	
+	if points.size() >= 2:
+		draw_polyline(points, accent_color, LINE_THICKNESS, true)
 
 func draw_layout() -> void:
 	var rect := get_rect()
@@ -62,10 +68,19 @@ func draw_layout() -> void:
 	var useful_rect := rect.grow(-CONTENT_PADDING)
 	
 	layout_offset_x = db_scale.draw(
-		Vector2(useful_rect.size.x + CONTENT_PADDING, useful_rect.position.y),
+		Vector2(useful_rect.position.x + useful_rect.size.x, useful_rect.position.y),
 		useful_rect.size.y,
 		get_theme_default_font(),
 		ThemeUtils.modify_color(text_color, 0.5)
+	)
+	
+	# Draw 0dB
+	var line_y := useful_rect.position.y + db_scale.db_to_y(0.0, useful_rect.size.y)
+	draw_line(
+		Vector2(useful_rect.position.x, line_y),
+		Vector2(useful_rect.position.x + rect.size.x - layout_offset_x - CONTENT_PADDING * 2.0, line_y),
+		ThemeUtils.modify_color(text_color, 0.85),
+		1.0
 	)
 
 # servers/audio/effects/audio_effect_hard_limiter.cpp#61a5d523887510a38d99efa782066d75e2e52faf
