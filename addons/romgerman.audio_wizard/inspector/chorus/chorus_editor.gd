@@ -6,7 +6,6 @@ const MAX_DELAY_MS := 50.0
 const MIN_LEVEL_DB := -60.0
 const MAX_LEVEL_DB := 24.0
 
-const CONTENT_PADDING := 12.0
 const LINE_THICKNESS := 1.0
 
 func _ready() -> void:

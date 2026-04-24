@@ -1,7 +1,6 @@
 @tool
 extends "../effect_editor_base.gd"
 
-const CONTENT_PADDING := 12.0
 const INDICATOR_RADIUS := 6.0
 
 func _ready() -> void:

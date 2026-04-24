@@ -7,7 +7,6 @@ const FreqScale := preload("res://addons/romgerman.audio_wizard/inspector/freq_s
 const EQ_MIN_DB := -60.0
 const EQ_MAX_DB := 24.0
 
-const CONTENT_PADDING := 12.0
 const GRAPH_RESOLUTION := 256
 const LINE_THICKNESS := 1.0
 

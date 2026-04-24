@@ -3,7 +3,6 @@ extends "../effect_editor_base.gd"
 
 const DbScale := preload("res://addons/romgerman.audio_wizard/inspector/db_scale.gd")
 
-const CONTENT_PADDING := 12.0
 const LINE_THICKNESS := 1.0
 
 var layout_offset_x := 0.0

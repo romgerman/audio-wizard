@@ -4,7 +4,6 @@ extends "../effect_editor_base.gd"
 const DbScale := preload("res://addons/romgerman.audio_wizard/inspector/db_scale.gd")
 const FreqScale := preload("res://addons/romgerman.audio_wizard/inspector/freq_scale.gd")
 
-const CONTENT_PADDING := 12.0
 const GRAPH_RESOLUTION := 256
 
 var db_scale: DbScale

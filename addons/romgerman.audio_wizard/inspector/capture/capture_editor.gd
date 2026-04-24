@@ -2,7 +2,6 @@
 extends "../effect_editor_base.gd"
 
 const MAX_BUFFER_SEC := 10.0
-const CONTENT_PADDING := 12.0
 const LINE_THICKNESS := 1.0
 
 func _ready() -> void:

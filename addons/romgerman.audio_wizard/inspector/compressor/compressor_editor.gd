@@ -6,7 +6,6 @@ const DbScale := preload("res://addons/romgerman.audio_wizard/inspector/db_scale
 const MIN_THRESHOLD := -80.0
 const MAX_THRESHOLD := 0.0
 
-const CONTENT_PADDING := 12.0
 const LINE_THICKNESS := 1.0
 
 var db_scale: DbScale

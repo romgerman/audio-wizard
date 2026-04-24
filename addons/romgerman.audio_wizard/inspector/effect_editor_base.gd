@@ -3,6 +3,8 @@ extends Control
 const EffectHandle := preload("res://addons/romgerman.audio_wizard/effect_handle.gd")
 const ThemeUtils := preload("res://addons/romgerman.audio_wizard/theme_utils.gd")
 
+const CONTENT_PADDING := 12.0
+
 var eff_handle: EffectHandle = EffectHandle.new()
 
 var base_color: Color

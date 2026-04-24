@@ -7,7 +7,6 @@ const MAX_GRAPH := 1.0
 const MIN_HF_HZ := 1.0
 const MAX_HF_HZ := 20500.0
 
-const CONTENT_PADDING := 12.0
 const LINE_THICKNESS := 2.0
 
 func _ready() -> void:
