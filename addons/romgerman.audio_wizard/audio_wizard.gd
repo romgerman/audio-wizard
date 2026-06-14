@@ -13,6 +13,7 @@ const HardLimiterInspector := preload("res://addons/romgerman.audio_wizard/inspe
 const PannerInspector := preload("res://addons/romgerman.audio_wizard/inspector/panner/panner.gd")
 
 const AudioStreamPlayer3DInspector := preload("res://addons/romgerman.audio_wizard/inspector/audio_stream_player_3d/audio_stream_player_3d.gd")
+const AudioEffectToggleInspector := preload("res://addons/romgerman.audio_wizard/inspector/effect_toggle.gd")
 
 var eff_amplify: AmplifyInspector
 var eff_filter: FilterInspector
@@ -26,6 +27,7 @@ var eff_hard_limiter: HardLimiterInspector
 var eff_panner: PannerInspector
 
 var audio_stream_player_3d: AudioStreamPlayer3DInspector
+var audio_effect_toggle: AudioEffectToggleInspector
 
 func _enable_plugin() -> void:
 	# Add autoloads here.
@@ -59,6 +61,8 @@ func _enter_tree() -> void:
 	
 	audio_stream_player_3d = AudioStreamPlayer3DInspector.new()
 	add_inspector_plugin(audio_stream_player_3d)
+	audio_effect_toggle = AudioEffectToggleInspector.new()
+	add_inspector_plugin(audio_effect_toggle)
 
 func _exit_tree() -> void:
 	remove_inspector_plugin(eff_amplify)
@@ -73,3 +77,4 @@ func _exit_tree() -> void:
 	remove_inspector_plugin(eff_panner)
 	
 	remove_inspector_plugin(audio_stream_player_3d)
+	remove_inspector_plugin(audio_effect_toggle)
