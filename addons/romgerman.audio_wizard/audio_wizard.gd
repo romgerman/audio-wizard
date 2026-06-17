@@ -11,6 +11,7 @@ const DistortionInspector := preload("res://addons/romgerman.audio_wizard/inspec
 const EQInspector := preload("res://addons/romgerman.audio_wizard/inspector/eq/eq.gd")
 const HardLimiterInspector := preload("res://addons/romgerman.audio_wizard/inspector/hard_limiter/hard_limiter.gd")
 const PannerInspector := preload("res://addons/romgerman.audio_wizard/inspector/panner/panner.gd")
+const StereoEnhanceInspector := preload("res://addons/romgerman.audio_wizard/inspector/stereo_enhance/stereo_enhance.gd")
 
 const AudioStreamPlayer3DInspector := preload("res://addons/romgerman.audio_wizard/inspector/audio_stream_player_3d/audio_stream_player_3d.gd")
 const AudioEffectToggleInspector := preload("res://addons/romgerman.audio_wizard/inspector/effect_toggle.gd")
@@ -25,6 +26,7 @@ var eff_distortion: DistortionInspector
 var eff_eq: EQInspector
 var eff_hard_limiter: HardLimiterInspector
 var eff_panner: PannerInspector
+var eff_stereo_enhance: StereoEnhanceInspector
 
 var audio_stream_player_3d: AudioStreamPlayer3DInspector
 var audio_effect_toggle: AudioEffectToggleInspector
@@ -58,6 +60,8 @@ func _enter_tree() -> void:
 	add_inspector_plugin(eff_hard_limiter)
 	eff_panner = PannerInspector.new()
 	add_inspector_plugin(eff_panner)
+	eff_stereo_enhance = StereoEnhanceInspector.new()
+	add_inspector_plugin(eff_stereo_enhance)
 	
 	audio_stream_player_3d = AudioStreamPlayer3DInspector.new()
 	add_inspector_plugin(audio_stream_player_3d)
@@ -75,6 +79,7 @@ func _exit_tree() -> void:
 	remove_inspector_plugin(eff_eq)
 	remove_inspector_plugin(eff_hard_limiter)
 	remove_inspector_plugin(eff_panner)
+	remove_inspector_plugin(eff_stereo_enhance)
 	
 	remove_inspector_plugin(audio_stream_player_3d)
 	remove_inspector_plugin(audio_effect_toggle)

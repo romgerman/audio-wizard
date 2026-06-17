@@ -19,6 +19,7 @@ For those who are tired of blindly changing parameters of audio effects in Godot
 - All EQs
 - Hard Limiter
 - Panner
+- Stereo Enhance
 
 **Additional visualizations:**
 

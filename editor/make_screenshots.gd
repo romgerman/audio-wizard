@@ -28,6 +28,7 @@ func _run() -> void:
 			if AudioServer.is_bus_effect_enabled(bus_index, effect_index):
 				var effect_res := AudioServer.get_bus_effect(bus_index, effect_index)
 				EditorInterface.get_inspector().edit(effect_res)
+				await EditorInterface.get_inspector().get_tree().process_frame
 				await _render_inspector(effect_res)
 	
 	inspector.reparent(inspector_parent)
