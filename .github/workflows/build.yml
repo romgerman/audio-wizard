@@ -24,7 +24,7 @@ jobs:
           cp --no-clobber '${{ github.workspace }}/README.md' '${{ github.workspace }}/LICENSE' "${ADDON_FOLDER}"
           mkdir -p "${OUTPUT_FOLDER}"
           cp -r "${ADDON_FOLDER}" "${OUTPUT_FOLDER}"
-          cd "${ADDON_FOLDER}"
+          cd "${OUTPUT_FOLDER}/${ADDON_NAME}"
           sed -i "s/^version=\".*\"/version=\"${{ steps.version.outputs.VERSION }}\"/" plugin.cfg
       - name: Pack files into a .zip
         shell: bash
