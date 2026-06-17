@@ -12,6 +12,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+      - name: Get version from tag
+        id: version
+        run: echo "VERSION=${GITHUB_REF_NAME#v}" >> $GITHUB_OUTPUT
       - name: Prepare addon
         shell: bash
         run: |
@@ -21,6 +24,8 @@ jobs:
           cp --no-clobber '${{ github.workspace }}/README.md' '${{ github.workspace }}/LICENSE' "${ADDON_FOLDER}"
           mkdir -p "${OUTPUT_FOLDER}"
           cp -r "${ADDON_FOLDER}" "${OUTPUT_FOLDER}"
+          cd "${ADDON_FOLDER}"
+          sed -i "s/^version=\".*\"/version=\"${{ steps.version.outputs.VERSION }}\"/" plugin.cfg
       - name: Pack files into a .zip
         shell: bash
         run: |
