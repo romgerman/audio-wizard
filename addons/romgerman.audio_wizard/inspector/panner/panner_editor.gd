@@ -66,8 +66,7 @@ func draw_layout() -> void:
 		Vector2(center_line_x, content_rect.position.y),
 		Vector2(center_line_x, content_rect.position.y + content_rect.size.y),
 		ThemeUtils.modify_color(base_color, 0.3),
-		0.5,
-		true
+		line_thickness_thin,
 	)
 	
 	# L

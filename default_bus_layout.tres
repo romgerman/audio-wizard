@@ -5,20 +5,20 @@ resource_name = "SpectrumAnalyzer"
 
 [sub_resource type="AudioEffectCapture" id="AudioEffectCapture_j3pel"]
 resource_name = "Capture"
-buffer_length = 1.26
+buffer_length = 2.76
 
 [sub_resource type="AudioEffectPanner" id="AudioEffectPanner_j3pel"]
 resource_name = "Panner"
-pan = -0.35
+pan = -0.47
 
 [sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_j3pel"]
 resource_name = "Compressor"
-threshold = -24.8
-ratio = 2.0
+threshold = -30.3
+ratio = 2.1
 
 [sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_j3pel"]
 resource_name = "Amplify"
-volume_db = -15.09
+volume_db = 7.35
 
 [sub_resource type="AudioEffectHardLimiter" id="AudioEffectHardLimiter_j3pel"]
 resource_name = "HardLimiter"
@@ -47,7 +47,7 @@ gain = 0.44
 
 [sub_resource type="AudioEffectNotchFilter" id="AudioEffectNotchFilter_j3pel"]
 resource_name = "NotchFilter"
-cutoff_hz = 1788.0
+cutoff_hz = 1390.0
 resonance = 0.25
 
 [sub_resource type="AudioEffectBandLimitFilter" id="AudioEffectBandLimitFilter_j3pel"]
@@ -68,18 +68,19 @@ tap2_delay_ms = 340.0
 tap2_level_db = -17.5
 tap2_pan = -0.65
 feedback_active = true
-feedback_delay_ms = 119.0
-feedback_level_db = -38.09
+feedback_delay_ms = 133.0
+feedback_level_db = -31.26
 
 [sub_resource type="AudioEffectDistortion" id="AudioEffectDistortion_j3pel"]
 resource_name = "Distortion"
 mode = 1
 pre_gain = -9.21
 drive = 0.69
-post_gain = 13.37
+post_gain = 11.75
 
 [sub_resource type="AudioEffectStereoEnhance" id="AudioEffectStereoEnhance_j3pel"]
 resource_name = "StereoEnhance"
+pan_pullout = 0.94
 
 [sub_resource type="AudioEffectPhaser" id="AudioEffectPhaser_j3pel"]
 resource_name = "Phaser"
@@ -130,7 +131,7 @@ resource_name = "Record"
 resource_name = "Limiter"
 
 [resource]
-bus/0/volume_db = -17.021105
+bus/0/volume_db = -18.31652
 bus/0/effect/0/effect = SubResource("AudioEffectSpectrumAnalyzer_j3pel")
 bus/0/effect/0/enabled = false
 bus/0/effect/1/effect = SubResource("AudioEffectCapture_j3pel")

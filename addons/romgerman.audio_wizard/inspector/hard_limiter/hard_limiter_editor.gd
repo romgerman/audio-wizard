@@ -3,8 +3,6 @@ extends "../effect_editor_base.gd"
 
 const DbScale := preload("res://addons/romgerman.audio_wizard/inspector/db_scale.gd")
 
-const LINE_THICKNESS := 1.0
-
 var layout_offset_x := 0.0
 
 var db_scale: DbScale
@@ -56,7 +54,7 @@ func draw_representation() -> void:
 		in_db += 0.5
 	
 	if points.size() >= 2:
-		draw_polyline(points, accent_color, LINE_THICKNESS, true)
+		draw_polyline(points, accent_color, line_thickness_primary, true)
 
 func draw_layout() -> void:
 	var rect := get_rect()

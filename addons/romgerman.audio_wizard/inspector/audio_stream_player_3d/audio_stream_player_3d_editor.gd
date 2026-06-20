@@ -7,7 +7,6 @@ const MIN_DB := -80.0
 const MAX_DB := 0.0
 
 const CONTENT_PADDING := 12.0
-const LINE_THICKNESS := 0.5
 const LINE_RESOLUTION := 96
 const FONT_SIZE := 10
 
@@ -15,6 +14,7 @@ var base_color: Color
 var accent_color: Color
 var text_color: Color
 var is_light_theme: bool
+var line_thickness: float
 
 var target: AudioStreamPlayer3D
 
@@ -75,7 +75,7 @@ func _draw() -> void:
 	draw_polyline(
 		points,
 		accent_color,
-		LINE_THICKNESS,
+		line_thickness,
 		true
 	)
 
@@ -84,6 +84,7 @@ func _get_theme_colors() -> void:
 	accent_color = ThemeUtils.get_accent_color(self)
 	is_light_theme = ThemeUtils.is_light_color(base_color)
 	text_color = Color.BLACK if is_light_theme else Color.WHITE
+	line_thickness = ThemeUtils.get_line_thickness(0)
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_THEME_CHANGED:

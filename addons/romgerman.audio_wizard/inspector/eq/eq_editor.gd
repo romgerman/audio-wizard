@@ -8,7 +8,6 @@ const EQ_MIN_DB := -60.0
 const EQ_MAX_DB := 24.0
 
 const GRAPH_RESOLUTION := 256
-const LINE_THICKNESS := 1.0
 
 var freq_scale: FreqScale
 var db_scale: DbScale
@@ -91,7 +90,7 @@ func draw_graph() -> void:
 
 	for line_points: PackedVector2Array in line_arr:
 		if line_points.size() > 2:
-			draw_polyline(line_points, accent_color, LINE_THICKNESS, true)
+			draw_polyline(line_points, accent_color, line_thickness_primary, true)
 
 func draw_layout() -> void:
 	var rect := get_rect()
@@ -114,7 +113,7 @@ func draw_layout() -> void:
 		Vector2(CONTENT_PADDING, line_y),
 		Vector2(rect.size.x - CONTENT_PADDING, line_y),
 		ThemeUtils.modify_color(text_color, 0.85),
-		1.0
+		line_thickness_secondary
 	)
 	
 	for p_band in bands:
@@ -126,7 +125,7 @@ func draw_layout() -> void:
 			Vector2(x + CONTENT_PADDING, CONTENT_PADDING),
 			Vector2(x + CONTENT_PADDING, rect.size.y - CONTENT_PADDING - y_offset),
 			ThemeUtils.modify_color(text_color, 0.85),
-			1.0
+			line_thickness_secondary
 		)
 
 func get_bands():

@@ -7,8 +7,6 @@ const MAX_GRAPH := 1.0
 const MIN_HF_HZ := 1.0
 const MAX_HF_HZ := 20500.0
 
-const LINE_THICKNESS := 2.0
-
 func _ready() -> void:
 	if eff_handle.has_effect():
 		EditorInterface.get_inspector().property_edited.connect(func (_prop: String):
@@ -51,7 +49,7 @@ func draw_representation() -> void:
 	draw_polyline(
 		points,
 		accent_color,
-		LINE_THICKNESS * clampf(brightness, 0.1, 1.0),
+		line_thickness_primary * clampf(brightness, line_thickness_secondary * 0.5, line_thickness_primary),
 		true
 	)
 
@@ -68,15 +66,15 @@ func draw_layout() -> void:
 	draw_line(
 		Vector2(center.x, CONTENT_PADDING),
 		Vector2(center.x, content_rect.size.y + CONTENT_PADDING),
-		ThemeUtils.modify_color(base_color, 0.1),
-		1.0
+		ThemeUtils.modify_color(base_color, 0.15),
+		line_thickness_secondary
 	)
 	# Horizontal line
 	draw_line(
 		Vector2(CONTENT_PADDING, center.y),
 		Vector2(content_rect.size.x + CONTENT_PADDING, center.y),
-		ThemeUtils.modify_color(base_color, 0.1),
-		1.0
+		ThemeUtils.modify_color(base_color, 0.15),
+		line_thickness_secondary
 	)
 
 # servers/audio/effects/audio_effect_distortion.cpp#63fa5486a4038498dec5d58f1dec41fd282c4645

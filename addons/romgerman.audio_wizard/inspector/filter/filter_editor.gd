@@ -80,7 +80,7 @@ func draw_graph() -> void:
 	
 	for line_points: PackedVector2Array in line_arr:
 		if line_points.size() > 2:
-			draw_polyline(line_points, accent_color, 1.0, true)
+			draw_polyline(line_points, accent_color, line_thickness_primary, true)
 
 func draw_layout() -> void:
 	var rect := get_rect()
@@ -112,7 +112,7 @@ func draw_layout() -> void:
 		Vector2(CONTENT_PADDING, line_y + CONTENT_PADDING),
 		Vector2(rect.size.x - CONTENT_PADDING - layout_offset_x, line_y + CONTENT_PADDING),
 		ThemeUtils.modify_color(text_color, 0.85),
-		1.0
+		line_thickness_secondary
 	)
 
 # This method is compiled from: servers/audio/audio_filter_sw.cpp#0b806ee0fc9097fa7bda7ac0109191c9c5e0a1ac

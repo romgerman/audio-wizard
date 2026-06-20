@@ -1,7 +1,6 @@
 @tool
 extends "../effect_editor_base.gd"
 
-const LINE_THICKNESS := 1.0
 const RESOLUTION := 48
 
 const MAX_PAN_PULLOUT := 4.0
@@ -64,7 +63,7 @@ func draw_representation() -> void:
 		(center_line_start - center_line_end).rotated(-side_pan_angle) + center_line_end,
 		center_line_end,
 		accent_color,
-		LINE_THICKNESS,
+		line_thickness_primary,
 		true
 	)
 	
@@ -73,7 +72,7 @@ func draw_representation() -> void:
 		(center_line_start - center_line_end).rotated(side_pan_angle) + center_line_end,
 		center_line_end,
 		accent_color,
-		LINE_THICKNESS,
+		line_thickness_primary,
 		true
 	)
 	
@@ -85,7 +84,7 @@ func draw_representation() -> void:
 			side_pan_angle - PI * 0.5,
 			48,
 			accent_color,
-			LINE_THICKNESS,
+			line_thickness_primary,
 			true
 		)
 	
@@ -125,24 +124,24 @@ func draw_layout() -> void:
 	draw_line(
 		center_line_start,
 		center_line_end,
-		ThemeUtils.modify_color(base_color, 0.1),
-		0.5,
+		ThemeUtils.modify_color(base_color, 0.15),
+		line_thickness_thin,
 		true
 	)
 	
 	draw_line(
 		(center_line_start - center_line_end).rotated(PI * 0.25) + center_line_end,
 		center_line_end,
-		ThemeUtils.modify_color(base_color, 0.1),
-		0.5,
+		ThemeUtils.modify_color(base_color, 0.15),
+		line_thickness_thin,
 		true
 	)
 	
 	draw_line(
 		(center_line_start - center_line_end).rotated(-PI * 0.25) + center_line_end,
 		center_line_end,
-		ThemeUtils.modify_color(base_color, 0.1),
-		0.5,
+		ThemeUtils.modify_color(base_color, 0.15),
+		line_thickness_thin,
 		true
 	)
 	
@@ -151,8 +150,8 @@ func draw_layout() -> void:
 	draw_line(
 		Vector2(content_rect.get_center().x - radius, content_rect.size.y + CONTENT_PADDING),
 		Vector2(content_rect.get_center().x + radius, content_rect.size.y + CONTENT_PADDING),
-		ThemeUtils.modify_color(base_color, 0.1),
-		0.5,
+		ThemeUtils.modify_color(base_color, 0.15),
+		line_thickness_thin,
 		true
 	)
 	
@@ -164,7 +163,7 @@ func draw_layout() -> void:
 		PI * 2.0,
 		48,
 		ThemeUtils.modify_color(base_color, 0.3),
-		0.5,
+		line_thickness_thin,
 		true
 	)
 	

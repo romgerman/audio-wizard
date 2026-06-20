@@ -6,8 +6,6 @@ const DbScale := preload("res://addons/romgerman.audio_wizard/inspector/db_scale
 const MIN_THRESHOLD := -80.0
 const MAX_THRESHOLD := 0.0
 
-const LINE_THICKNESS := 1.0
-
 var db_scale: DbScale
 var layout_offset_x := 0.0
 
@@ -32,7 +30,7 @@ func draw_representation() -> void:
 		Rect2(Vector2(CONTENT_PADDING, CONTENT_PADDING), Vector2(24.0, rect.size.y)),
 		ThemeUtils.modify_color(base_color, 0.5),
 		false,
-		LINE_THICKNESS
+		line_thickness_secondary
 	)
 	
 	var eff_compressor := eff_handle.get_effect() as AudioEffectCompressor
@@ -51,7 +49,7 @@ func draw_representation() -> void:
 		Vector2(CONTENT_PADDING, threshold_height + CONTENT_PADDING),
 		Vector2(CONTENT_PADDING + 24.0 + 12.0, threshold_height + CONTENT_PADDING),
 		ThemeUtils.modify_color(base_color, 0.5),
-		LINE_THICKNESS,
+		line_thickness_secondary,
 	)
 	
 	draw_string(
@@ -89,14 +87,14 @@ func draw_representation() -> void:
 	draw_polyline(
 		uncomp_points,
 		ThemeUtils.modify_color(base_color, 0.2),
-		LINE_THICKNESS * 0.5,
+		line_thickness_thin,
 		true
 	)
 	
 	draw_polyline(
 		comp_points,
 		accent_color,
-		LINE_THICKNESS,
+		line_thickness_primary,
 		true
 	)
 

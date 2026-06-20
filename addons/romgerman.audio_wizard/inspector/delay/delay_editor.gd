@@ -10,7 +10,6 @@ const FEEDBACK_LOWPASS_MAX_HZ := 16000.0
 
 const RESOLUTION := 128
 const FEEDBACK_RESOLUTION := 48
-const LINE_THICKNESS := 3.0
 
 func _ready() -> void:
 	if eff_handle.has_effect():
@@ -57,7 +56,7 @@ func draw_tap(num: int, pos: Vector2, rect: Rect2) -> void:
 	var tap_level: float = eff_delay.get("tap%s_level_db" % num)
 	var brightness := lerpf(0.05, 1.0, -(tap_level / (TAP_MAX_LEVEL_DB - TAP_MIN_LEVEL_DB)))
 	
-	draw_polyline(points, ThemeUtils.modify_color(accent_color, brightness), LINE_THICKNESS, true)
+	draw_polyline(points, ThemeUtils.modify_color(accent_color, brightness), line_thickness_primary, true)
 	
 	var tap_pan: float = eff_delay.get("tap%s_pan" % num)
 	var t := (tap_pan + 1.0) / 2.0
@@ -67,7 +66,7 @@ func draw_tap(num: int, pos: Vector2, rect: Rect2) -> void:
 		cos(-rad) * radius
 	)
 	
-	draw_circle(pos + pan_pos, LINE_THICKNESS * 2.0, accent_color, true, -1, true)
+	draw_circle(pos + pan_pos, line_thickness_primary * 2.0, accent_color, true, -1, true)
 
 func draw_feedback(pos: Vector2, rect: Rect2) -> void:
 	var eff_delay := eff_handle.get_effect() as AudioEffectDelay
@@ -100,7 +99,7 @@ func draw_feedback(pos: Vector2, rect: Rect2) -> void:
 			PI * 2.0,
 			FEEDBACK_RESOLUTION,
 			color,
-			0.5,
+			line_thickness_thin,
 			true
 		)
 

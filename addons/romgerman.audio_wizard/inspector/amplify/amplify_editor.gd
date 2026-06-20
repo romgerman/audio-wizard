@@ -3,8 +3,6 @@ extends "../effect_editor_base.gd"
 
 const DbScale := preload("res://addons/romgerman.audio_wizard/inspector/db_scale.gd")
 
-const LINE_THICKNESS := 1.0
-
 var db_scale: DbScale
 var layout_offset_x := 0.0
 
@@ -36,17 +34,17 @@ func draw_meters() -> void:
 		in_begin_pos,
 		Vector2(CONTENT_PADDING + useful_width * 0.5, CONTENT_PADDING + in_vol_y),
 		accent_color,
-		LINE_THICKNESS,
+		line_thickness_primary,
 		true
 	)
 	var in_text_pos := in_begin_pos + Vector2(0, ThemeUtils.FONT_SIZE + 2)
 	if in_text_pos.y > useful_height:
-		in_text_pos.y -= ThemeUtils.FONT_SIZE + 2 + LINE_THICKNESS + 3
+		in_text_pos.y -= ThemeUtils.FONT_SIZE + 2 + line_thickness_primary + 3
 	in_text_pos.y = clampf(in_text_pos.y, ThemeUtils.FONT_SIZE, rect.size.y - 2)
 	draw_string(
 		get_theme_default_font(),
 		in_text_pos,
-		"in (bus) %0.2fdB" % input_volume,
+		("in (bus) %0.2fdB" if eff_handle.audio_eff_index == 0 else "in %0.2fdB") % input_volume,
 		HorizontalAlignment.HORIZONTAL_ALIGNMENT_LEFT,
 		-1,
 		ThemeUtils.FONT_SIZE,
@@ -60,12 +58,12 @@ func draw_meters() -> void:
 		out_being_pos,
 		Vector2(CONTENT_PADDING + useful_width, CONTENT_PADDING + out_vol_y),
 		Color.RED,
-		LINE_THICKNESS,
+		line_thickness_primary,
 		true
 	)
 	var out_text_pos := out_being_pos + Vector2(0, ThemeUtils.FONT_SIZE + 2)
 	if out_text_pos.y > useful_height:
-		out_text_pos.y -= ThemeUtils.FONT_SIZE + 2 + LINE_THICKNESS + 3
+		out_text_pos.y -= ThemeUtils.FONT_SIZE + 2 + line_thickness_primary + 3
 	out_text_pos.y = clampf(out_text_pos.y, ThemeUtils.FONT_SIZE, rect.size.y - 2)
 	draw_string(
 		get_theme_default_font(),
@@ -98,6 +96,6 @@ func draw_layout() -> void:
 	draw_line(
 		Vector2(CONTENT_PADDING, line_y + CONTENT_PADDING),
 		Vector2(rect.size.x - CONTENT_PADDING - layout_offset_x, line_y + CONTENT_PADDING),
-		ThemeUtils.modify_color(text_color, 0.85),
-		1.0
+		ThemeUtils.modify_color(text_color, 0.8),
+		line_thickness_secondary
 	)

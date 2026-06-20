@@ -21,3 +21,20 @@ static func modify_color(color: Color, mod: float) -> Color:
 		return color.darkened(mod)
 	else:
 		return color.lightened(mod)
+
+static func get_line_thickness(weight: int) -> float:
+	if Engine.get_version_info().hex >= 0x040700:
+		if weight == 2:
+			return 2.0
+		elif weight == 1:
+			return 1.0
+		elif weight == 0:
+			return 1.0
+	else:
+		if weight == 2:
+			return 1.0
+		elif weight == 1:
+			return 1.0
+		elif weight == 0:
+			return 0.5
+	return 1.0

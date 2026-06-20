@@ -6,8 +6,6 @@ const MAX_DELAY_MS := 50.0
 const MIN_LEVEL_DB := -60.0
 const MAX_LEVEL_DB := 24.0
 
-const LINE_THICKNESS := 1.0
-
 func _ready() -> void:
 	if eff_handle.has_effect():
 		EditorInterface.get_inspector().property_edited.connect(func (_prop: String):
@@ -45,7 +43,7 @@ func draw_voices() -> void:
 			Vector2(base_x, CONTENT_PADDING),
 			Vector2(base_x, rect.size.y),
 			accent_color,
-			LINE_THICKNESS,
+			line_thickness_secondary,
 			true
 		)
 		draw_string(
@@ -71,7 +69,8 @@ func draw_layout() -> void:
 	draw_line(
 		Vector2(rect.size.x * 0.5, CONTENT_PADDING),
 		Vector2(rect.size.x * 0.5, rect.size.y - CONTENT_PADDING),
-		Color.DIM_GRAY,
+		ThemeUtils.modify_color(base_color, 0.3),
+		line_thickness_thin
 	)
 
 func draw_overlay() -> void:

@@ -2,7 +2,6 @@
 extends "../effect_editor_base.gd"
 
 const MAX_BUFFER_SEC := 10.0
-const LINE_THICKNESS := 1.0
 
 func _ready() -> void:
 	if eff_handle.has_effect():
@@ -51,21 +50,21 @@ func draw_grid() -> void:
 			Vector2(x, -rect.size.y * 0.25),
 			Vector2(x, rect.size.y * 0.25),
 			accent_color,
-			LINE_THICKNESS,
+			line_thickness_secondary,
 			true
 		)
 		draw_line(
 			Vector2(x - 2.0, -rect.size.y * 0.25),
 			Vector2(x + 2.0, -rect.size.y * 0.25),
 			accent_color,
-			LINE_THICKNESS,
+			line_thickness_secondary,
 			true
 		)
 		draw_line(
 			Vector2(x - 2.0, rect.size.y * 0.25),
 			Vector2(x + 2.0, rect.size.y * 0.25),
 			accent_color,
-			LINE_THICKNESS,
+			line_thickness_secondary,
 			true
 		)
 		draw_set_transform(Vector2.ZERO)
