@@ -9,7 +9,6 @@ buffer_length = 2.76
 
 [sub_resource type="AudioEffectPanner" id="AudioEffectPanner_j3pel"]
 resource_name = "Panner"
-pan = -0.47
 
 [sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_j3pel"]
 resource_name = "Compressor"
@@ -63,7 +62,7 @@ resource_name = "Chorus"
 resource_name = "Delay"
 tap1_delay_ms = 656.0
 tap1_level_db = -4.02
-tap1_pan = 0.61
+tap1_pan = 0.66
 tap2_delay_ms = 340.0
 tap2_level_db = -17.5
 tap2_pan = -0.65
