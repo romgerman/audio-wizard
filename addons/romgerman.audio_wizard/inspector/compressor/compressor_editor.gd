@@ -28,7 +28,7 @@ func draw_representation() -> void:
 	# Threshold jar
 	draw_rect(
 		Rect2(Vector2(CONTENT_PADDING, CONTENT_PADDING), Vector2(24.0, rect.size.y)),
-		ThemeUtils.modify_color(base_color, 0.5),
+		ThemeUtils.modify_color(base_color, 0.2),
 		false,
 		line_thickness_secondary
 	)
@@ -48,7 +48,7 @@ func draw_representation() -> void:
 	draw_line(
 		Vector2(CONTENT_PADDING, threshold_height + CONTENT_PADDING),
 		Vector2(CONTENT_PADDING + 24.0 + 12.0, threshold_height + CONTENT_PADDING),
-		ThemeUtils.modify_color(base_color, 0.5),
+		ThemeUtils.modify_color(base_color, 0.2),
 		line_thickness_secondary,
 	)
 	
@@ -62,7 +62,7 @@ func draw_representation() -> void:
 		HorizontalAlignment.HORIZONTAL_ALIGNMENT_LEFT,
 		-1,
 		ThemeUtils.FONT_SIZE,
-		text_color.lightened(0.5)
+		ThemeUtils.modify_color(text_color, 0.1)
 	)
 	
 	var uncomp_points := PackedVector2Array()

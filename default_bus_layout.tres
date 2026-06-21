@@ -5,19 +5,19 @@ resource_name = "SpectrumAnalyzer"
 
 [sub_resource type="AudioEffectCapture" id="AudioEffectCapture_j3pel"]
 resource_name = "Capture"
-buffer_length = 2.76
+buffer_length = 1.0
 
 [sub_resource type="AudioEffectPanner" id="AudioEffectPanner_j3pel"]
 resource_name = "Panner"
 
 [sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_j3pel"]
 resource_name = "Compressor"
-threshold = -30.3
-ratio = 2.1
+threshold = -22.3
+ratio = 1.4
 
 [sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_j3pel"]
 resource_name = "Amplify"
-volume_db = 7.35
+volume_db = -15.49
 
 [sub_resource type="AudioEffectHardLimiter" id="AudioEffectHardLimiter_j3pel"]
 resource_name = "HardLimiter"
@@ -30,33 +30,40 @@ resonance = 0.42
 [sub_resource type="AudioEffectLowShelfFilter" id="AudioEffectLowShelfFilter_j3pel"]
 resource_name = "LowShelfFilter"
 cutoff_hz = 4124.0
-resonance = 0.94
-gain = 0.4
+resonance = 0.64
+gain = 0.47
 
 [sub_resource type="AudioEffectHighPassFilter" id="AudioEffectHighPassFilter_j3pel"]
 resource_name = "HighPassFilter"
-cutoff_hz = 5148.0
-resonance = 0.45
+cutoff_hz = 2094.0
+resonance = 0.44
 
 [sub_resource type="AudioEffectHighShelfFilter" id="AudioEffectHighShelfFilter_j3pel"]
 resource_name = "HighShelfFilter"
 cutoff_hz = 4933.0
-resonance = 0.45
-gain = 0.44
+resonance = 0.31
+gain = 0.64
 
 [sub_resource type="AudioEffectNotchFilter" id="AudioEffectNotchFilter_j3pel"]
 resource_name = "NotchFilter"
-cutoff_hz = 1390.0
-resonance = 0.25
+cutoff_hz = 4392.0
 
 [sub_resource type="AudioEffectBandLimitFilter" id="AudioEffectBandLimitFilter_j3pel"]
 resource_name = "BandLimitFilter"
+cutoff_hz = 1845.0
 
 [sub_resource type="AudioEffectBandPassFilter" id="AudioEffectBandPassFilter_j3pel"]
 resource_name = "BandPassFilter"
 
 [sub_resource type="AudioEffectChorus" id="AudioEffectChorus_j3pel"]
 resource_name = "Chorus"
+voice/1/rate_hz = 8.6
+voice/1/depth_ms = 5.82
+voice/1/level_db = 13.3
+voice/2/delay_ms = 50.0
+voice/2/rate_hz = 4.0
+voice/2/depth_ms = 1.98
+voice/2/level_db = -12.0
 
 [sub_resource type="AudioEffectDelay" id="AudioEffectDelay_j3pel"]
 resource_name = "Delay"
@@ -67,8 +74,8 @@ tap2_delay_ms = 340.0
 tap2_level_db = -17.5
 tap2_pan = -0.65
 feedback_active = true
-feedback_delay_ms = 133.0
-feedback_level_db = -31.26
+feedback_delay_ms = 106.0
+feedback_level_db = -40.22
 
 [sub_resource type="AudioEffectDistortion" id="AudioEffectDistortion_j3pel"]
 resource_name = "Distortion"
@@ -79,7 +86,6 @@ post_gain = 11.75
 
 [sub_resource type="AudioEffectStereoEnhance" id="AudioEffectStereoEnhance_j3pel"]
 resource_name = "StereoEnhance"
-pan_pullout = 0.94
 
 [sub_resource type="AudioEffectPhaser" id="AudioEffectPhaser_j3pel"]
 resource_name = "Phaser"
@@ -110,18 +116,16 @@ band_db/250_hz = -21.9
 band_db/350_hz = 24.0
 band_db/500_hz = -4.7
 band_db/700_hz = -27.3
-band_db/1000_hz = -13.3
-band_db/1400_hz = -16.4
 band_db/2000_hz = 10.4
-band_db/2800_hz = -54.9
+band_db/2800_hz = -27.8
 band_db/11000_hz = 10.7
 band_db/16000_hz = 11.1
 
 [sub_resource type="AudioEffectEQ6" id="AudioEffectEQ6_j3pel"]
 resource_name = "EQ6"
-band_db/32_hz = 10.3
+band_db/32_hz = -23.6
 band_db/320_hz = -1.9
-band_db/1000_hz = -14.5
+band_db/1000_hz = 15.9
 
 [sub_resource type="AudioEffectRecord" id="AudioEffectRecord_j3pel"]
 resource_name = "Record"

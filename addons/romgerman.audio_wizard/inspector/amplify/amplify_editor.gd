@@ -48,7 +48,7 @@ func draw_meters() -> void:
 		HorizontalAlignment.HORIZONTAL_ALIGNMENT_LEFT,
 		-1,
 		ThemeUtils.FONT_SIZE,
-		text_color
+		ThemeUtils.modify_color(text_color, 0.1)
 	)
 	
 	# Draw output
@@ -72,7 +72,7 @@ func draw_meters() -> void:
 		HorizontalAlignment.HORIZONTAL_ALIGNMENT_LEFT,
 		-1,
 		ThemeUtils.FONT_SIZE,
-		text_color
+		ThemeUtils.modify_color(text_color, 0.1)
 	)
 
 func draw_layout() -> void:

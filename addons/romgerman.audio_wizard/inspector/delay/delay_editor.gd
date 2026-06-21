@@ -66,7 +66,7 @@ func draw_tap(num: int, pos: Vector2, rect: Rect2) -> void:
 		cos(-rad) * radius
 	)
 	
-	draw_circle(pos + pan_pos, line_thickness_primary * 2.0, accent_color, true, -1, true)
+	draw_circle(pos + pan_pos, line_thickness_primary * 4.0, accent_color, true, -1, true)
 
 func draw_feedback(pos: Vector2, rect: Rect2) -> void:
 	var eff_delay := eff_handle.get_effect() as AudioEffectDelay

@@ -26,8 +26,9 @@ func _ready() -> void:
 			queue_redraw()
 		)
 
-func _process(_delta: float) -> void:
-	queue_redraw()
+#func _process(_delta: float) -> void:
+	#if eff_handle.has_effect():
+		#queue_redraw()
 
 func _draw() -> void:
 	draw_layout()
@@ -65,7 +66,7 @@ func draw_voices() -> void:
 		var color := VOICE_COLOR[voice_index] as Color
 		color.s = 0.50
 		color.a = level_mod
-		draw_polyline(points, ThemeUtils.modify_color(color, 0.25), line_thickness_secondary, true)
+		draw_polyline(points, ThemeUtils.modify_color(color, 0.25), line_thickness_primary, true)
 
 func draw_layout() -> void:
 	var rect := get_rect()
