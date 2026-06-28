@@ -3,10 +3,10 @@ extends EditorInspectorPlugin
 const EffectHandle := preload("res://addons/romgerman.audio_wizard/effect_handle.gd")
 const ResEffectHandle := preload("res://addons/romgerman.audio_wizard/res_effect_handle.gd")
 const Utils := preload("res://addons/romgerman.audio_wizard/utils.gd")
-const InspectorEditor := preload("res://addons/romgerman.audio_wizard/inspector/delay/delay_editor.tscn")
+const InspectorEditor := preload("res://addons/romgerman.audio_wizard/inspector/phaser/phaser_editor.tscn")
 
 func _can_handle(object: Object) -> bool:
-	return object is AudioEffectDelay
+	return object is AudioEffectPhaser
 
 func _parse_begin(object: Object) -> void:
 	var result := Utils.find_effect_bus(object)

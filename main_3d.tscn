@@ -5,6 +5,7 @@
 [node name="main3d" type="Node3D" unique_id=960809665]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=140782761]
+stream = ExtResource("1_wiwsh")
 bus = &"SFX"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1435308873]

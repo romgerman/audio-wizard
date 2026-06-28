@@ -9,6 +9,7 @@ buffer_length = 1.0
 
 [sub_resource type="AudioEffectPanner" id="AudioEffectPanner_j3pel"]
 resource_name = "Panner"
+pan = -0.31
 
 [sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_j3pel"]
 resource_name = "Compressor"
@@ -17,7 +18,7 @@ ratio = 1.4
 
 [sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_j3pel"]
 resource_name = "Amplify"
-volume_db = -15.49
+volume_db = -15.75
 
 [sub_resource type="AudioEffectHardLimiter" id="AudioEffectHardLimiter_j3pel"]
 resource_name = "HardLimiter"
@@ -29,7 +30,7 @@ resonance = 0.42
 
 [sub_resource type="AudioEffectLowShelfFilter" id="AudioEffectLowShelfFilter_j3pel"]
 resource_name = "LowShelfFilter"
-cutoff_hz = 4124.0
+cutoff_hz = 6764.0
 resonance = 0.64
 gain = 0.47
 
@@ -46,7 +47,6 @@ gain = 0.64
 
 [sub_resource type="AudioEffectNotchFilter" id="AudioEffectNotchFilter_j3pel"]
 resource_name = "NotchFilter"
-cutoff_hz = 4392.0
 
 [sub_resource type="AudioEffectBandLimitFilter" id="AudioEffectBandLimitFilter_j3pel"]
 resource_name = "BandLimitFilter"
@@ -57,13 +57,10 @@ resource_name = "BandPassFilter"
 
 [sub_resource type="AudioEffectChorus" id="AudioEffectChorus_j3pel"]
 resource_name = "Chorus"
-voice/1/rate_hz = 8.6
-voice/1/depth_ms = 5.82
-voice/1/level_db = 13.3
-voice/2/delay_ms = 50.0
-voice/2/rate_hz = 4.0
-voice/2/depth_ms = 1.98
-voice/2/level_db = -12.0
+voice/1/depth_ms = 8.67
+voice/1/level_db = 14.2
+voice/2/level_db = 12.4
+voice/2/pan = 0.74
 
 [sub_resource type="AudioEffectDelay" id="AudioEffectDelay_j3pel"]
 resource_name = "Delay"
@@ -89,6 +86,7 @@ resource_name = "StereoEnhance"
 
 [sub_resource type="AudioEffectPhaser" id="AudioEffectPhaser_j3pel"]
 resource_name = "Phaser"
+range_max_hz = 6393.418
 
 [sub_resource type="AudioEffectPitchShift" id="AudioEffectPitchShift_j3pel"]
 resource_name = "PitchShift"
@@ -134,7 +132,7 @@ resource_name = "Record"
 resource_name = "Limiter"
 
 [resource]
-bus/0/volume_db = -18.31652
+bus/0/volume_db = -0.72599316
 bus/0/effect/0/effect = SubResource("AudioEffectSpectrumAnalyzer_j3pel")
 bus/0/effect/0/enabled = false
 bus/0/effect/1/effect = SubResource("AudioEffectCapture_j3pel")
@@ -182,7 +180,7 @@ bus/2/effect/2/enabled = true
 bus/2/effect/3/effect = SubResource("AudioEffectStereoEnhance_j3pel")
 bus/2/effect/3/enabled = true
 bus/2/effect/4/effect = SubResource("AudioEffectPhaser_j3pel")
-bus/2/effect/4/enabled = false
+bus/2/effect/4/enabled = true
 bus/2/effect/5/effect = SubResource("AudioEffectPitchShift_j3pel")
 bus/2/effect/5/enabled = false
 bus/2/effect/6/effect = SubResource("AudioEffectReverb_j3pel")

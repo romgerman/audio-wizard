@@ -1,23 +1,19 @@
 extends EditorInspectorPlugin
 
 const EffectHandle := preload("res://addons/romgerman.audio_wizard/effect_handle.gd")
+const ResEffectHandle := preload("res://addons/romgerman.audio_wizard/res_effect_handle.gd")
+const Utils := preload("res://addons/romgerman.audio_wizard/utils.gd")
 const InspectorEditor := preload("res://addons/romgerman.audio_wizard/inspector/panner/panner_editor.tscn")
 
 func _can_handle(object: Object) -> bool:
 	return object is AudioEffectPanner
 
 func _parse_begin(object: Object) -> void:
-	var used_bus_index := -1
-	var used_eff_index := -1
-	for bus_index in AudioServer.bus_count:
-		if used_eff_index != -1:
-			break
-		for eff_index in AudioServer.get_bus_effect_count(bus_index):
-			if AudioServer.get_bus_effect(bus_index, eff_index) == object:
-				used_bus_index = bus_index
-				used_eff_index = eff_index
-				break
-	
+	var result := Utils.find_effect_bus(object)
 	var ie := InspectorEditor.instantiate()
-	ie.eff_handle = EffectHandle.create(used_bus_index, used_eff_index)
+	
+	if result.is_empty:
+		ie.eff_handle = ResEffectHandle.new(object)
+	else:
+		ie.eff_handle = EffectHandle.create(result.bus_index, result.eff_index)
 	add_custom_control(ie)

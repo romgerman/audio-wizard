@@ -24,7 +24,9 @@ func draw_meters() -> void:
 	var useful_height := rect.size.y - CONTENT_PADDING * 2.0
 	
 	var eff_amplify := eff_handle.get_effect() as AudioEffectAmplify
-	var input_volume := AudioServer.get_bus_volume_db(eff_handle.audio_bus_index)
+	var input_volume := 0.0
+	if eff_handle.audio_eff_index != -1:
+		input_volume = AudioServer.get_bus_volume_db(eff_handle.audio_bus_index)
 	var output_volume := input_volume + eff_amplify.volume_db
 	
 	# Draw input

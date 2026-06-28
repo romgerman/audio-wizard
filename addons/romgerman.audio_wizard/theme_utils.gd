@@ -38,3 +38,30 @@ static func get_line_thickness(weight: int) -> float:
 		elif weight == 0:
 			return 0.5
 	return 1.0
+
+static func smooth_polyline(points: PackedVector2Array, threshold_angle: float) -> PackedVector2Array:
+	if points.size() < 2:
+		return points
+	
+	var out := PackedVector2Array()
+	
+	out.push_back(points[0])
+	for i in range(1, points.size() - 1):
+		var prev_point := points[i - 1]
+		var curr_point := points[i]
+		var next_point := points[i + 1]
+		
+		var dir_in := prev_point.direction_to(curr_point)
+		var dir_out := curr_point.direction_to(next_point)
+		
+		if abs(dir_in.angle_to(dir_out)) > threshold_angle:
+			var q_point := curr_point.lerp(prev_point, 0.25)
+			var r_point := curr_point.lerp(next_point, 0.25)
+			out.push_back(q_point)
+			out.push_back(r_point)
+		else:
+			out.push_back(next_point)
+	
+	out.push_back(points[points.size() - 1])
+	
+	return out

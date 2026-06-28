@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://p14p8oc5uys2"]
+
+[ext_resource type="Script" uid="uid://glv1av7todj0" path="res://addons/romgerman.audio_wizard/inspector/phaser/phaser_editor.gd" id="1_mcy8b"]
+
+[node name="PhaserEditor" type="MarginContainer" unique_id=903706506]
+clip_contents = true
+custom_minimum_size = Vector2(0, 200)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mcy8b")

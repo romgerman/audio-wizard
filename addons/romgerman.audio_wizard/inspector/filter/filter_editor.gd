@@ -80,7 +80,8 @@ func draw_graph() -> void:
 	
 	for line_points: PackedVector2Array in line_arr:
 		if line_points.size() > 2:
-			draw_polyline(line_points, accent_color, line_thickness_primary, true)
+			var smooth_points := ThemeUtils.smooth_polyline(line_points, PI * 0.1)
+			draw_polyline(smooth_points, accent_color, line_thickness_primary, true)
 
 func draw_layout() -> void:
 	var rect := get_rect()
