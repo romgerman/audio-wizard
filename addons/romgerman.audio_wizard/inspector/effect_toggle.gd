@@ -9,7 +9,20 @@ var is_parsing: bool = false
 
 func _parse_begin(object: Object) -> void:
 	_find_editor_buses_ctrl()
-	is_parsing = true
+	
+	var used_bus_index := -1
+	var used_eff_index := -1
+	for bus_index in AudioServer.bus_count:
+		if used_eff_index != -1:
+			break
+		for eff_index in AudioServer.get_bus_effect_count(bus_index):
+			if AudioServer.get_bus_effect(bus_index, eff_index) == object:
+				used_bus_index = bus_index
+				used_eff_index = eff_index
+				break
+	
+	if used_bus_index != -1 and used_eff_index != -1:
+		is_parsing = true
 
 func _parse_property(
 	object: Object,
