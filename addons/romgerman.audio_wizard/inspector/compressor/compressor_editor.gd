@@ -17,6 +17,10 @@ func _ready() -> void:
 	
 	db_scale = DbScale.new(self)
 
+#func _process(delta: float) -> void:
+	#if eff_handle.has_effect():
+		#queue_redraw()
+
 func _draw() -> void:
 	draw_layout()
 	if eff_handle.has_effect():

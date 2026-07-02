@@ -9,16 +9,16 @@ buffer_length = 1.0
 
 [sub_resource type="AudioEffectPanner" id="AudioEffectPanner_j3pel"]
 resource_name = "Panner"
-pan = -0.31
-
-[sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_j3pel"]
-resource_name = "Compressor"
-threshold = -22.3
-ratio = 1.4
+pan = -0.73
 
 [sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_j3pel"]
 resource_name = "Amplify"
 volume_db = -15.75
+
+[sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_j3pel"]
+resource_name = "Compressor"
+threshold = -24.7
+ratio = 2.2
 
 [sub_resource type="AudioEffectHardLimiter" id="AudioEffectHardLimiter_j3pel"]
 resource_name = "HardLimiter"
@@ -139,9 +139,9 @@ bus/0/effect/1/effect = SubResource("AudioEffectCapture_j3pel")
 bus/0/effect/1/enabled = true
 bus/0/effect/2/effect = SubResource("AudioEffectPanner_j3pel")
 bus/0/effect/2/enabled = true
-bus/0/effect/3/effect = SubResource("AudioEffectCompressor_j3pel")
+bus/0/effect/3/effect = SubResource("AudioEffectAmplify_j3pel")
 bus/0/effect/3/enabled = true
-bus/0/effect/4/effect = SubResource("AudioEffectAmplify_j3pel")
+bus/0/effect/4/effect = SubResource("AudioEffectCompressor_j3pel")
 bus/0/effect/4/enabled = true
 bus/0/effect/5/effect = SubResource("AudioEffectHardLimiter_j3pel")
 bus/0/effect/5/enabled = true

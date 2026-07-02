@@ -9,6 +9,10 @@ func _ready() -> void:
 			queue_redraw()
 		)
 
+#func _process(delta: float) -> void:
+	#if eff_handle.has_effect():
+		#queue_redraw()
+
 func _draw() -> void:
 	draw_layout()
 	if eff_handle.has_effect():
@@ -25,16 +29,20 @@ func draw_grid() -> void:
 	for sec in range(int(grid_scale) + 1):
 		var x := rect.size.x * (float(sec) / grid_scale) + CONTENT_PADDING
 		draw_line(
-			Vector2(x, CONTENT_PADDING * 2.0),
+			Vector2(x, CONTENT_PADDING + ThemeUtils.FONT_SIZE),
 			Vector2(x, rect.size.y),
-			ThemeUtils.modify_color(text_color, 0.5)
+			ThemeUtils.modify_color(text_color, 0.5),
+			line_thickness_secondary
 		)
+		
+		var mark_text := str(floori(sec)) + "s"
+		var mark_text_size := get_theme_default_font().get_string_size(mark_text, HORIZONTAL_ALIGNMENT_CENTER, -1, ThemeUtils.FONT_SIZE)
 		
 		draw_string(
 			get_theme_default_font(),
-			Vector2(x - ThemeUtils.FONT_SIZE * 0.5, rect.size.y + CONTENT_PADDING + 2.0),
-			str(floori(sec)) + "s",
-			HorizontalAlignment.HORIZONTAL_ALIGNMENT_CENTER,
+			Vector2(x - mark_text_size.x * 0.5, rect.size.y + CONTENT_PADDING + 2.0),
+			mark_text,
+			HORIZONTAL_ALIGNMENT_CENTER,
 			-1,
 			ThemeUtils.FONT_SIZE,
 			ThemeUtils.modify_color(text_color, 0.5)
@@ -44,7 +52,7 @@ func draw_grid() -> void:
 	var cell_width := rect.size.x / repeats_s
 	
 	for i in floori(repeats_s):
-		draw_set_transform(Vector2(0.0, rect.size.y * 0.5))
+		draw_set_transform(Vector2(0.0, rect.get_center().y))
 		var x := (i + 1) * cell_width + CONTENT_PADDING
 		draw_line(
 			Vector2(x, -rect.size.y * 0.25),

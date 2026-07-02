@@ -1,3 +1,4 @@
 [gd_resource type="AudioEffectAmplify" format=3 uid="uid://b7m01n6fat7io"]
 
 [resource]
+volume_db = -18.65

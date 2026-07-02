@@ -25,7 +25,7 @@ func draw_meters() -> void:
 	
 	var eff_amplify := eff_handle.get_effect() as AudioEffectAmplify
 	var input_volume := 0.0
-	if eff_handle.audio_eff_index != -1:
+	if eff_handle.audio_eff_index == 0:
 		input_volume = AudioServer.get_bus_volume_db(eff_handle.audio_bus_index)
 	var output_volume := input_volume + eff_amplify.volume_db
 	
